@@ -10,12 +10,14 @@
     --bg:#f6f8f7; --card:#ffffff; --text:#0f172a; --muted:#64748b;
     --green:#1f9d55; --green-d:#177a41; --border:#e2e8f0;
     --orange:#d97706; --orange-d:#b45309;
+    --purple:#7c3aed; --purple-d:#5b21b6;
   }
   @media (prefers-color-scheme: dark) {
     :root {
       --bg:#0b1220; --card:#141c2b; --text:#e8eef6; --muted:#94a3b8;
       --green:#2ecc71; --green-d:#25a55b; --border:#243044;
       --orange:#f59e0b; --orange-d:#d97706;
+      --purple:#8b5cf6; --purple-d:#7c3aed;
     }
   }
   * { box-sizing:border-box; }
@@ -102,6 +104,20 @@
     font-weight:600; font-size:15px; transition:background .15s ease;
   }
   .btn-orange:hover { background:var(--orange-d); }
+
+  /* ---- ExamInsight (tông tím — màu icon của nó, để phân biệt với hai app kia) ---- */
+  .companion.insight .icon {
+    background:linear-gradient(135deg,var(--purple),var(--purple-d));
+    box-shadow:0 8px 20px rgba(124,58,237,.30);
+  }
+  .btn-purple {
+    display:inline-block; padding:11px 22px; border-radius:12px;
+    background:var(--purple); color:#fff; text-decoration:none;
+    font-weight:600; font-size:15px; transition:background .15s ease;
+  }
+  .btn-purple:hover { background:var(--purple-d); }
+  /* Hai thẻ công cụ đi kèm xếp chồng, cách nhau đều. */
+  .companion + .companion { margin-top:20px; }
   .section-label {
     text-align:center; color:var(--muted); font-size:13px;
     text-transform:uppercase; letter-spacing:1.2px; margin-bottom:16px;
@@ -181,8 +197,23 @@
       </div>
     </div>
 
+    <div class="companion insight">
+      <div class="icon">📊</div>
+      <div class="body">
+        <h2>ExamInsight</h2>
+        <p class="sub" data-i18n="insight_sub">Windows · Miễn phí</p>
+        <p data-i18n-html="insight_body">
+          Chấm xong rồi thì sao? ExamInsight đọc file kết quả của ExamScan và cho biết
+          cả lớp làm được đến đâu: điểm trung bình, tỷ lệ đạt, phân phối điểm, và quan
+          trọng nhất là <strong>câu nào cả lớp sai nhiều nhất</strong>. Xuất báo cáo ra
+          Excel hoặc PDF chỉ bằng một cú bấm.
+        </p>
+        <a class="btn-purple" href="https://github.com/viettien117/ExamInsight_Windows_updates/releases/latest" target="_blank" rel="noopener" data-i18n="insight_btn">Tải ExamInsight cho Windows</a>
+      </div>
+    </div>
+
     <footer>
-      © 2026 RuBi · ExamScan · ExamMixer<br>
+      © 2026 RuBi · ExamScan · ExamMixer · ExamInsight<br>
       <a href="https://viettien117.github.io/examscan-privacy/" target="_blank" rel="noopener" data-i18n="privacy">Chính sách quyền riêng tư</a>
     </footer>
   </div>
@@ -193,7 +224,7 @@
   var I18N = {
     vi: {
       title: "Tải ExamScan — Chấm bài trắc nghiệm bằng cách chụp ảnh",
-      desc: "Tải ExamScan cho iPhone/iPad, Android và Windows. Chấm bài trắc nghiệm trong vài giây bằng cách chụp ảnh. Kèm ExamMixer — trộn đề thi từ ngân hàng câu hỏi Word.",
+      desc: "Tải ExamScan cho iPhone/iPad, Android và Windows. Chấm bài trắc nghiệm trong vài giây bằng cách chụp ảnh. Kèm ExamMixer — trộn đề thi từ ngân hàng câu hỏi Word — và ExamInsight — thống kê kết quả sau khi chấm.",
       tagline: "Chấm bài trắc nghiệm trong vài giây bằng cách chụp ảnh.",
       sub_windows: "Máy tính / PC",
       btn_ios: "Tải trên App Store",
@@ -204,56 +235,68 @@
       mixer_sub: "Windows · Miễn phí",
       mixer_body: "Trộn đề thi trắc nghiệm từ ngân hàng câu hỏi soạn sẵn trong file Word. Từ một bộ câu hỏi, ExamMixer tự sinh nhiều mã đề khác nhau (đảo thứ tự câu và phương án để chống nhìn bài), rồi xuất đề ra Word/PDF kèm bảng đáp án <strong>dùng được ngay với ExamScan</strong> để chấm tự động.",
       mixer_btn: "Tải ExamMixer cho Windows",
+      insight_sub: "Windows · Miễn phí",
+      insight_body: "Chấm xong rồi thì sao? ExamInsight đọc file kết quả của ExamScan và cho biết cả lớp làm được đến đâu: điểm trung bình, tỷ lệ đạt, phân phối điểm, và quan trọng nhất là <strong>câu nào cả lớp sai nhiều nhất</strong>. Xuất báo cáo ra Excel hoặc PDF chỉ bằng một cú bấm.",
+      insight_btn: "Tải ExamInsight cho Windows",
       privacy: "Chính sách quyền riêng tư"
     },
     en: {
       title: "Download ExamScan — Grade multiple-choice tests with a photo",
-      desc: "Download ExamScan for iPhone/iPad, Android and Windows. Grade multiple-choice answer sheets in seconds by snapping a photo. Includes ExamMixer — mix exams from a Word question bank.",
+      desc: "Download ExamScan for iPhone/iPad, Android and Windows. Grade multiple-choice answer sheets in seconds by snapping a photo. Includes ExamMixer — mix exams from a Word question bank — and ExamInsight — analyse the results after grading.",
       tagline: "Grade multiple-choice answer sheets in seconds by snapping a photo.",
       sub_windows: "Desktop / PC",
       btn_ios: "Download on the App Store",
       btn_android: "Get it on Google Play",
       btn_windows: "Download for Windows",
       hint: "Scan the QR code with your phone camera, or tap a button to download.",
-      companion_label: "Companion tool",
+      companion_label: "Companion tools",
       mixer_sub: "Windows · Free",
       mixer_body: "Mix multiple-choice exams from a question bank written in Word. From a single set of questions, ExamMixer generates several exam codes (shuffling questions and options to prevent copying), then exports the papers to Word/PDF along with an answer key that <strong>works directly with ExamScan</strong> for automatic grading.",
       mixer_btn: "Download ExamMixer for Windows",
+      insight_sub: "Windows · Free",
+      insight_body: "And once the papers are graded? ExamInsight reads the result file from ExamScan and tells you how the class actually did: average score, pass rate, score distribution and, above all, <strong>which question the class got wrong most often</strong>. Export the report to Excel or PDF in one click.",
+      insight_btn: "Download ExamInsight for Windows",
       privacy: "Privacy policy"
     },
     pt: {
       title: "Baixar ExamScan — Corrija provas de múltipla escolha com uma foto",
-      desc: "Baixe o ExamScan para iPhone/iPad, Android e Windows. Corrija folhas de resposta de múltipla escolha em segundos tirando uma foto. Inclui o ExamMixer — monte provas a partir de um banco de questões no Word.",
+      desc: "Baixe o ExamScan para iPhone/iPad, Android e Windows. Corrija folhas de resposta de múltipla escolha em segundos tirando uma foto. Inclui o ExamMixer — monte provas a partir de um banco de questões no Word — e o ExamInsight — analise os resultados depois da correção.",
       tagline: "Corrija folhas de resposta de múltipla escolha em segundos, apenas tirando uma foto.",
       sub_windows: "Computador / PC",
       btn_ios: "Baixar na App Store",
       btn_android: "Disponível no Google Play",
       btn_windows: "Baixar para Windows",
       hint: "Aponte a câmera do celular para o QR code ou toque em um botão para baixar.",
-      companion_label: "Ferramenta complementar",
+      companion_label: "Ferramentas complementares",
       mixer_sub: "Windows · Grátis",
       mixer_body: "Monte provas de múltipla escolha a partir de um banco de questões feito no Word. Com um único conjunto de questões, o ExamMixer gera vários modelos de prova (embaralhando questões e alternativas para evitar cola) e exporta os arquivos em Word/PDF com um gabarito que <strong>funciona direto no ExamScan</strong> para correção automática.",
       mixer_btn: "Baixar o ExamMixer para Windows",
+      insight_sub: "Windows · Grátis",
+      insight_body: "E depois da correção? O ExamInsight lê o arquivo de resultado do ExamScan e mostra como a turma realmente se saiu: nota média, taxa de aprovação, distribuição de notas e, acima de tudo, <strong>qual questão a turma mais errou</strong>. Exporte o relatório em Excel ou PDF com um clique.",
+      insight_btn: "Baixar o ExamInsight para Windows",
       privacy: "Política de privacidade"
     },
     es: {
       title: "Descargar ExamScan — Califica exámenes de opción múltiple con una foto",
-      desc: "Descarga ExamScan para iPhone/iPad, Android y Windows. Califica hojas de respuestas de opción múltiple en segundos con solo tomar una foto. Incluye ExamMixer — crea exámenes desde un banco de preguntas en Word.",
+      desc: "Descarga ExamScan para iPhone/iPad, Android y Windows. Califica hojas de respuestas de opción múltiple en segundos con solo tomar una foto. Incluye ExamMixer — crea exámenes desde un banco de preguntas en Word — y ExamInsight — analiza los resultados tras calificar.",
       tagline: "Califica hojas de respuestas de opción múltiple en segundos con solo tomar una foto.",
       sub_windows: "Ordenador / PC",
       btn_ios: "Descargar en la App Store",
       btn_android: "Disponible en Google Play",
       btn_windows: "Descargar para Windows",
       hint: "Escanea el código QR con la cámara del móvil o pulsa un botón para descargar.",
-      companion_label: "Herramienta complementaria",
+      companion_label: "Herramientas complementarias",
       mixer_sub: "Windows · Gratis",
       mixer_body: "Crea exámenes de opción múltiple a partir de un banco de preguntas escrito en Word. Con un solo conjunto de preguntas, ExamMixer genera varios modelos de examen (baraja preguntas y opciones para evitar copias) y exporta los exámenes en Word/PDF junto con una clave de respuestas que <strong>funciona directamente con ExamScan</strong> para calificar de forma automática.",
       mixer_btn: "Descargar ExamMixer para Windows",
+      insight_sub: "Windows · Gratis",
+      insight_body: "¿Y después de calificar? ExamInsight lee el archivo de resultado de ExamScan y muestra cómo fue realmente la clase: nota promedio, tasa de aprobación, distribución de notas y, sobre todo, <strong>qué pregunta falló más la clase</strong>. Exporta el informe a Excel o PDF con un solo clic.",
+      insight_btn: "Descargar ExamInsight para Windows",
       privacy: "Política de privacidad"
     },
     id: {
       title: "Unduh ExamScan — Nilai soal pilihan ganda hanya dengan memotret",
-      desc: "Unduh ExamScan untuk iPhone/iPad, Android, dan Windows. Nilai lembar jawaban pilihan ganda dalam hitungan detik hanya dengan memotretnya. Termasuk ExamMixer — susun soal dari bank soal di Word.",
+      desc: "Unduh ExamScan untuk iPhone/iPad, Android, dan Windows. Nilai lembar jawaban pilihan ganda dalam hitungan detik hanya dengan memotretnya. Termasuk ExamMixer — susun soal dari bank soal di Word — dan ExamInsight — analisis hasil setelah penilaian.",
       tagline: "Nilai lembar jawaban pilihan ganda dalam hitungan detik hanya dengan memotretnya.",
       sub_windows: "Komputer / PC",
       btn_ios: "Unduh di App Store",
@@ -264,6 +307,9 @@
       mixer_sub: "Windows · Gratis",
       mixer_body: "Susun soal pilihan ganda dari bank soal yang dibuat di Word. Dari satu kumpulan soal, ExamMixer membuat beberapa kode soal sekaligus (mengacak urutan soal dan pilihan agar tidak mudah dicontek), lalu mengekspornya ke Word/PDF beserta kunci jawaban yang <strong>langsung dapat dipakai di ExamScan</strong> untuk penilaian otomatis.",
       mixer_btn: "Unduh ExamMixer untuk Windows",
+      insight_sub: "Windows · Gratis",
+      insight_body: "Lalu setelah dinilai? ExamInsight membaca file hasil dari ExamScan dan menunjukkan sejauh mana kelas benar-benar menguasai materi: nilai rata-rata, tingkat kelulusan, distribusi nilai, dan yang terpenting <strong>soal mana yang paling banyak dijawab salah</strong>. Ekspor laporan ke Excel atau PDF hanya dengan satu klik.",
+      insight_btn: "Unduh ExamInsight untuk Windows",
       privacy: "Kebijakan privasi"
     }
   };
