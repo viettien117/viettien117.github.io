@@ -4,7 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tải ExamScan — Chấm bài trắc nghiệm bằng cách chụp ảnh</title>
-<meta name="description" content="Tải ExamScan cho iPhone/iPad, Android và Windows. Chấm bài trắc nghiệm trong vài giây bằng cách chụp ảnh. Kèm ExamMixer — trộn đề thi từ ngân hàng câu hỏi Word.">
+<!-- Mô tả tĩnh này bị JS ghi đè theo ngôn ngữ khi trang tải, nhưng vẫn phải đúng:
+     trình thu thập dữ liệu và ô xem trước khi chia sẻ link thường KHÔNG chạy JS. -->
+<meta name="description" content="Tải ExamScan cho iPhone/iPad, Android và Windows. Chấm bài trắc nghiệm trong vài giây bằng cách chụp ảnh. Kèm ExamMixer — trộn đề thi từ ngân hàng câu hỏi Word — và ExamInsight — thống kê kết quả sau khi chấm.">
 <style>
   :root {
     --bg:#f6f8f7; --card:#ffffff; --text:#0f172a; --muted:#64748b;
@@ -88,12 +90,15 @@
     background:var(--card); border:1px solid var(--border); border-radius:18px;
     padding:26px 24px; display:flex; gap:22px; align-items:flex-start;
   }
+  /* Icon là ẢNH THẬT của từng app (chính file logo64.png dùng trong chương trình),
+     không phải emoji — ảnh đã kèm sẵn nền bo góc riêng nên KHÔNG bọc thêm nền
+     gradient nữa, chỉ giữ bóng đổ theo tông màu của app đó. */
   .companion .icon {
-    flex:0 0 auto; width:60px; height:60px; border-radius:14px;
-    display:flex; align-items:center; justify-content:center; font-size:32px;
-    background:linear-gradient(135deg,var(--orange),var(--orange-d));
-    box-shadow:0 8px 20px rgba(217,119,6,.30);
+    flex:0 0 auto; width:60px; height:60px; border-radius:14px; overflow:hidden;
   }
+  .companion .icon img { width:100%; height:100%; display:block; }
+  .companion.mixer   .icon { box-shadow:0 8px 20px rgba(217,119,6,.30); }
+  .companion.insight .icon { box-shadow:0 8px 20px rgba(124,58,237,.30); }
   .companion .body { flex:1 1 auto; min-width:0; }
   .companion h2 { font-size:20px; margin:2px 0 4px; }
   .companion .sub { margin:0 0 12px; }
@@ -106,10 +111,6 @@
   .btn-orange:hover { background:var(--orange-d); }
 
   /* ---- ExamInsight (tông tím — màu icon của nó, để phân biệt với hai app kia) ---- */
-  .companion.insight .icon {
-    background:linear-gradient(135deg,var(--purple),var(--purple-d));
-    box-shadow:0 8px 20px rgba(124,58,237,.30);
-  }
   .btn-purple {
     display:inline-block; padding:11px 22px; border-radius:12px;
     background:var(--purple); color:#fff; text-decoration:none;
@@ -182,8 +183,8 @@
 
     <p class="section-label" data-i18n="companion_label">Công cụ đi kèm</p>
 
-    <div class="companion">
-      <div class="icon">🔀</div>
+    <div class="companion mixer">
+      <div class="icon"><img src="data:image/png;base64,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" alt="" width="60" height="60" loading="lazy"></div>
       <div class="body">
         <h2>ExamMixer</h2>
         <p class="sub" data-i18n="mixer_sub">Windows · Miễn phí</p>
@@ -198,7 +199,7 @@
     </div>
 
     <div class="companion insight">
-      <div class="icon">📊</div>
+      <div class="icon"><img src="data:image/png;base64,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" alt="" width="60" height="60" loading="lazy"></div>
       <div class="body">
         <h2>ExamInsight</h2>
         <p class="sub" data-i18n="insight_sub">Windows · Miễn phí</p>
