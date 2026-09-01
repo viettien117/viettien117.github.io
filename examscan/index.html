@@ -110,6 +110,8 @@
     font-weight:600; font-size:15px; transition:background .15s ease;
   }
   .btn-orange:hover { background:var(--orange-d); }
+  /* Hai nút tải (Windows / macOS) nằm cạnh nhau, xuống dòng khi màn hình hẹp. */
+  .btnrow { display:flex; flex-wrap:wrap; gap:10px; }
 
   /* ---- ExamInsight (tông tím — màu icon của nó, để phân biệt với hai app kia) ---- */
   .btn-purple {
@@ -188,14 +190,17 @@
       <div class="icon"><img src="data:image/png;base64,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" alt="" width="60" height="60" loading="lazy"></div>
       <div class="body">
         <h2>ExamMixer</h2>
-        <p class="sub" data-i18n="mixer_sub">Windows · Miễn phí</p>
+        <p class="sub" data-i18n="mixer_sub">Windows · macOS · Miễn phí</p>
         <p data-i18n-html="mixer_body">
           Trộn đề thi trắc nghiệm từ ngân hàng câu hỏi soạn sẵn trong file Word.
           Từ một bộ câu hỏi, ExamMixer tự sinh nhiều mã đề khác nhau (đảo thứ tự câu
           và phương án để chống nhìn bài), rồi xuất đề ra Word/PDF kèm bảng đáp án
           <strong>dùng được ngay với ExamScan</strong> để chấm tự động.
         </p>
-        <a class="btn-orange" href="https://github.com/viettien117/ExamMixer_Windows_updates/releases/latest" target="_blank" rel="noopener" data-i18n="mixer_btn">Tải ExamMixer cho Windows</a>
+        <div class="btnrow">
+          <a class="btn-orange" href="https://github.com/viettien117/ExamMixer_Windows_updates/releases/latest" target="_blank" rel="noopener" data-i18n="mixer_btn">Tải ExamMixer cho Windows</a>
+          <a class="btn-orange" href="https://github.com/viettien117/ExamMixer_Windows_updates/releases/latest" target="_blank" rel="noopener" data-i18n="mixer_btn_mac">Tải ExamMixer cho macOS</a>
+        </div>
       </div>
     </div>
 
@@ -234,9 +239,10 @@
       btn_windows: "Tải cho Windows",
       hint: "Quét mã QR bằng camera điện thoại, hoặc bấm nút để tải.",
       companion_label: "Công cụ đi kèm",
-      mixer_sub: "Windows · Miễn phí",
+      mixer_sub: "Windows · macOS · Miễn phí",
       mixer_body: "Trộn đề thi trắc nghiệm từ ngân hàng câu hỏi soạn sẵn trong file Word. Từ một bộ câu hỏi, ExamMixer tự sinh nhiều mã đề khác nhau (đảo thứ tự câu và phương án để chống nhìn bài), rồi xuất đề ra Word/PDF kèm bảng đáp án <strong>dùng được ngay với ExamScan</strong> để chấm tự động.",
       mixer_btn: "Tải ExamMixer cho Windows",
+      mixer_btn_mac: "Tải ExamMixer cho macOS",
       insight_sub: "Windows · Miễn phí",
       insight_body: "Chấm xong rồi thì sao? ExamInsight đọc file kết quả của ExamScan và cho biết cả lớp làm được đến đâu: điểm trung bình, tỷ lệ đạt, phân phối điểm, và quan trọng nhất là <strong>câu nào cả lớp sai nhiều nhất</strong>. Xuất báo cáo ra Excel hoặc PDF chỉ bằng một cú bấm.",
       insight_btn: "Tải ExamInsight cho Windows",
@@ -252,9 +258,10 @@
       btn_windows: "Download for Windows",
       hint: "Scan the QR code with your phone camera, or tap a button to download.",
       companion_label: "Companion tools",
-      mixer_sub: "Windows · Free",
+      mixer_sub: "Windows · macOS · Free",
       mixer_body: "Mix multiple-choice exams from a question bank written in Word. From a single set of questions, ExamMixer generates several exam codes (shuffling questions and options to prevent copying), then exports the papers to Word/PDF along with an answer key that <strong>works directly with ExamScan</strong> for automatic grading.",
       mixer_btn: "Download ExamMixer for Windows",
+      mixer_btn_mac: "Download ExamMixer for macOS",
       insight_sub: "Windows · Free",
       insight_body: "And once the papers are graded? ExamInsight reads the result file from ExamScan and tells you how the class actually did: average score, pass rate, score distribution and, above all, <strong>which question the class got wrong most often</strong>. Export the report to Excel or PDF in one click.",
       insight_btn: "Download ExamInsight for Windows",
@@ -270,9 +277,10 @@
       btn_windows: "Baixar para Windows",
       hint: "Aponte a câmera do celular para o QR code ou toque em um botão para baixar.",
       companion_label: "Ferramentas complementares",
-      mixer_sub: "Windows · Grátis",
+      mixer_sub: "Windows · macOS · Grátis",
       mixer_body: "Monte provas de múltipla escolha a partir de um banco de questões feito no Word. Com um único conjunto de questões, o ExamMixer gera vários modelos de prova (embaralhando questões e alternativas para evitar cola) e exporta os arquivos em Word/PDF com um gabarito que <strong>funciona direto no ExamScan</strong> para correção automática.",
       mixer_btn: "Baixar o ExamMixer para Windows",
+      mixer_btn_mac: "Baixar o ExamMixer para macOS",
       insight_sub: "Windows · Grátis",
       insight_body: "E depois da correção? O ExamInsight lê o arquivo de resultado do ExamScan e mostra como a turma realmente se saiu: nota média, taxa de aprovação, distribuição de notas e, acima de tudo, <strong>qual questão a turma mais errou</strong>. Exporte o relatório em Excel ou PDF com um clique.",
       insight_btn: "Baixar o ExamInsight para Windows",
@@ -288,9 +296,10 @@
       btn_windows: "Descargar para Windows",
       hint: "Escanea el código QR con la cámara del móvil o pulsa un botón para descargar.",
       companion_label: "Herramientas complementarias",
-      mixer_sub: "Windows · Gratis",
+      mixer_sub: "Windows · macOS · Gratis",
       mixer_body: "Crea exámenes de opción múltiple a partir de un banco de preguntas escrito en Word. Con un solo conjunto de preguntas, ExamMixer genera varios modelos de examen (baraja preguntas y opciones para evitar copias) y exporta los exámenes en Word/PDF junto con una clave de respuestas que <strong>funciona directamente con ExamScan</strong> para calificar de forma automática.",
       mixer_btn: "Descargar ExamMixer para Windows",
+      mixer_btn_mac: "Descargar ExamMixer para macOS",
       insight_sub: "Windows · Gratis",
       insight_body: "¿Y después de calificar? ExamInsight lee el archivo de resultado de ExamScan y muestra cómo fue realmente la clase: nota promedio, tasa de aprobación, distribución de notas y, sobre todo, <strong>qué pregunta falló más la clase</strong>. Exporta el informe a Excel o PDF con un solo clic.",
       insight_btn: "Descargar ExamInsight para Windows",
@@ -306,9 +315,10 @@
       btn_windows: "Unduh untuk Windows",
       hint: "Pindai kode QR dengan kamera ponsel, atau ketuk tombol untuk mengunduh.",
       companion_label: "Alat pendamping",
-      mixer_sub: "Windows · Gratis",
+      mixer_sub: "Windows · macOS · Gratis",
       mixer_body: "Susun soal pilihan ganda dari bank soal yang dibuat di Word. Dari satu kumpulan soal, ExamMixer membuat beberapa kode soal sekaligus (mengacak urutan soal dan pilihan agar tidak mudah dicontek), lalu mengekspornya ke Word/PDF beserta kunci jawaban yang <strong>langsung dapat dipakai di ExamScan</strong> untuk penilaian otomatis.",
       mixer_btn: "Unduh ExamMixer untuk Windows",
+      mixer_btn_mac: "Unduh ExamMixer untuk macOS",
       insight_sub: "Windows · Gratis",
       insight_body: "Lalu setelah dinilai? ExamInsight membaca file hasil dari ExamScan dan menunjukkan sejauh mana kelas benar-benar menguasai materi: nilai rata-rata, tingkat kelulusan, distribusi nilai, dan yang terpenting <strong>soal mana yang paling banyak dijawab salah</strong>. Ekspor laporan ke Excel atau PDF hanya dengan satu klik.",
       insight_btn: "Unduh ExamInsight untuk Windows",
