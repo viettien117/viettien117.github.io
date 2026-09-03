@@ -199,7 +199,17 @@
         </p>
         <div class="btnrow">
           <a class="btn-orange" href="https://github.com/viettien117/ExamMixer_Windows_updates/releases/latest" target="_blank" rel="noopener" data-i18n="mixer_btn">Tải ExamMixer cho Windows</a>
-          <a class="btn-orange" href="https://github.com/viettien117/ExamMixer_Windows_updates/releases/latest" target="_blank" rel="noopener" data-i18n="mixer_btn_mac">Tải ExamMixer cho macOS</a>
+          <!-- macOS trỏ vào ĐÚNG thẻ v1.1.0, không phải /releases/latest.
+               Lý do: bản Windows 1.1.0 vừa bị rút xuống (đánh dấu pre-release) nên
+               /releases/latest của repo đó nay trả về 1.0.7 — bản 1.0.7 KHÔNG có
+               file .dmg nào, nút macOS sẽ dẫn tới trang không có gì để tải.
+               Bốn file macOS 1.1.0 vẫn nằm nguyên ở thẻ v1.1.0 và vẫn dùng tốt.
+
+               KHI PHÁT HÀNH 1.1.1: đổi link này sang
+               https://github.com/viettien117/ExamMixer_macOS_updates/releases/latest
+               — từ 1.1.1 bản macOS nằm ở repo riêng đó. Việc này đã ghi trong
+               ExamMixer/installer/macos/VIEC-BEN-MAC.md để khỏi quên. -->
+          <a class="btn-orange" href="https://github.com/viettien117/ExamMixer_Windows_updates/releases/tag/v1.1.0" target="_blank" rel="noopener" data-i18n="mixer_btn_mac">Tải ExamMixer cho macOS</a>
         </div>
       </div>
     </div>
