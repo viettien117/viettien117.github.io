@@ -13,6 +13,7 @@
     --green:#1f9d55; --green-d:#177a41; --border:#e2e8f0;
     --orange:#d97706; --orange-d:#b45309;
     --purple:#7c3aed; --purple-d:#5b21b6;
+    --cyan:#0e7490; --cyan-d:#155e75;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -20,6 +21,10 @@
       --green:#2ecc71; --green-d:#25a55b; --border:#243044;
       --orange:#f59e0b; --orange-d:#d97706;
       --purple:#8b5cf6; --purple-d:#7c3aed;
+      /* Cyan đậm hơn hai màu kia một bậc: chữ TRẮNG trên nền cyan sáng
+         (#22d3ee) chỉ đạt khoảng 1,9:1, đọc không nổi. #0891b2 đạt ~3,5:1
+         mà vẫn ra rõ màu cyan trên nền tối. */
+      --cyan:#0891b2; --cyan-d:#0e7490;
     }
   }
   * { box-sizing:border-box; }
@@ -100,6 +105,7 @@
   .companion .icon img { width:100%; height:100%; display:block; }
   .companion.mixer   .icon { box-shadow:0 8px 20px rgba(217,119,6,.30); }
   .companion.insight .icon { box-shadow:0 8px 20px rgba(124,58,237,.30); }
+  .companion.sheet   .icon { box-shadow:0 8px 20px rgba(14,116,144,.30); }
   .companion .body { flex:1 1 auto; min-width:0; }
   .companion h2 { font-size:20px; margin:2px 0 4px; }
   .companion .sub { margin:0 0 12px; }
@@ -120,6 +126,18 @@
     font-weight:600; font-size:15px; transition:background .15s ease;
   }
   .btn-purple:hover { background:var(--purple-d); }
+
+  /* ---- ExamSheet (tông cyan — màu icon của nó) ----
+     Hiện CHỈ có nút Windows: bản macOS chưa dựng, chưa ký, chưa notarize.
+     Đừng thêm nút macOS trước khi có bản thật trên
+     github.com/viettien117/ExamSheet_macOS_updates — hứa một đường dẫn 404
+     còn tệ hơn là chưa nhắc tới. */
+  .btn-cyan {
+    display:inline-block; padding:11px 22px; border-radius:12px;
+    background:var(--cyan); color:#fff; text-decoration:none;
+    font-weight:600; font-size:15px; transition:background .15s ease;
+  }
+  .btn-cyan:hover { background:var(--cyan-d); }
   /* Hai thẻ công cụ đi kèm xếp chồng, cách nhau đều. */
   .companion + .companion { margin-top:20px; }
   .section-label {
@@ -253,6 +271,23 @@
       </div>
     </div>
 
+    <div class="companion sheet">
+      <div class="icon"><img src="data:image/png;base64,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" alt="" width="60" height="60" loading="lazy"></div>
+      <div class="body">
+        <h2>ExamSheet</h2>
+        <p class="sub" data-i18n="sheet_sub">Windows · Miễn phí</p>
+        <p data-i18n-html="sheet_body">
+          Chưa có phiếu trả lời để chấm? ExamSheet vẽ ra phiếu đó. Bạn chọn số dòng
+          thông tin thí sinh, số chữ số mã số sinh viên và mã đề, số câu và số phương
+          án, rồi ghép thành <strong>phiếu chấm được ngay bằng ExamScan</strong>. Xuất
+          ra PNG, PDF, Word hoặc in thẳng ra máy in.
+        </p>
+        <div class="btnrow">
+          <a class="btn-cyan" href="https://github.com/viettien117/ExamSheet_Windows_updates/releases/latest" target="_blank" rel="noopener" data-i18n="sheet_btn">Tải ExamSheet cho Windows</a>
+        </div>
+      </div>
+    </div>
+
     <!-- Loi cam on + xin danh gia 5 sao, dat cuoi trang sau khi nguoi doc da xem
          xong phan tai. Chi ExamScan moi co cho danh gia: ExamMixer va ExamInsight
          phat hanh qua GitHub, khong co sao de cham - vi vay cau chu chi nhac
@@ -275,7 +310,7 @@
     </div>
 
     <footer>
-      © 2026 RuBi · ExamScan · ExamMixer · ExamInsight<br>
+      © 2026 RuBi · ExamScan · ExamMixer · ExamInsight · ExamSheet<br>
       <a href="https://viettien117.github.io/examscan-privacy/" target="_blank" rel="noopener" data-i18n="privacy">Chính sách quyền riêng tư</a>
     </footer>
   </div>
@@ -302,6 +337,9 @@
       insight_body: "Chấm xong rồi thì sao? ExamInsight đọc file kết quả của ExamScan và cho biết cả lớp làm được đến đâu: điểm trung bình, tỷ lệ đạt, phân phối điểm, và quan trọng nhất là <strong>câu nào cả lớp sai nhiều nhất</strong>. Xuất báo cáo ra Excel hoặc PDF chỉ bằng một cú bấm.",
       insight_btn: "Tải ExamInsight cho Windows",
       insight_btn_mac: "Tải ExamInsight cho macOS",
+      sheet_sub: "Windows · Miễn phí",
+      sheet_body: "Chưa có phiếu trả lời để chấm? ExamSheet vẽ ra phiếu đó. Bạn chọn số dòng thông tin thí sinh, số chữ số mã số sinh viên và mã đề, số câu và số phương án, rồi ghép thành <strong>phiếu chấm được ngay bằng ExamScan</strong>. Xuất ra PNG, PDF, Word hoặc in thẳng ra máy in.",
+      sheet_btn: "Tải ExamSheet cho Windows",
       thanks_title: "Cảm ơn bạn đã ghé thăm",
       thanks_body: "Cảm ơn bạn đã ghé thăm website của chúng tôi và dành sự quan tâm cho chương trình. Đây là động lực rất lớn, khích lệ chúng tôi tiếp tục nâng cấp, cải tiến và tạo ra những chương trình có ích cho mọi người.",
       thanks_rate: "Nếu thấy chương trình hữu ích, hãy dành cho ExamScan 5 sao trên App Store hoặc Google Play. Mỗi lượt đánh giá giúp nhiều người khác dễ tìm thấy chương trình hơn.",
@@ -328,6 +366,9 @@
       insight_body: "And once the papers are graded? ExamInsight reads the result file from ExamScan and tells you how the class actually did: average score, pass rate, score distribution and, above all, <strong>which question the class got wrong most often</strong>. Export the report to Excel or PDF in one click.",
       insight_btn: "Download ExamInsight for Windows",
       insight_btn_mac: "Download ExamInsight for macOS",
+      sheet_sub: "Windows · Free",
+      sheet_body: "No answer sheet to grade yet? ExamSheet draws it. Choose how many candidate-info lines you need, how many digits for the student ID and the test code, how many questions and options, then combine it all into <strong>a sheet ExamScan can grade straight away</strong>. Export to PNG, PDF, Word, or print it directly.",
+      sheet_btn: "Download ExamSheet for Windows",
       thanks_title: "Thank you for stopping by",
       thanks_body: "Thank you for visiting our website and for taking an interest in these programs. It means a great deal to us, and it keeps us improving them and building new tools that help people.",
       thanks_rate: "If you find them useful, please give ExamScan 5 stars on the App Store or Google Play. Every rating helps more people discover it.",
@@ -354,6 +395,9 @@
       insight_body: "E depois da correção? O ExamInsight lê o arquivo de resultado do ExamScan e mostra como a turma realmente se saiu: nota média, taxa de aprovação, distribuição de notas e, acima de tudo, <strong>qual questão a turma mais errou</strong>. Exporte o relatório em Excel ou PDF com um clique.",
       insight_btn: "Baixar o ExamInsight para Windows",
       insight_btn_mac: "Baixar o ExamInsight para macOS",
+      sheet_sub: "Windows · Grátis",
+      sheet_body: "Ainda não tem a folha de respostas para corrigir? O ExamSheet desenha essa folha. Escolha quantas linhas de dados do aluno quer, quantos dígitos para a matrícula e o código da prova, quantas questões e alternativas, e junte tudo em <strong>uma folha que o ExamScan corrige de imediato</strong>. Exporte em PNG, PDF, Word ou imprima direto.",
+      sheet_btn: "Baixar o ExamSheet para Windows",
       thanks_title: "Obrigado pela sua visita",
       thanks_body: "Obrigado por visitar o nosso site e por se interessar por estes programas. Isso significa muito para nós e nos incentiva a continuar melhorando e a criar ferramentas úteis para todos.",
       thanks_rate: "Se achar os programas úteis, dê 5 estrelas ao ExamScan na App Store ou no Google Play. Cada avaliação ajuda mais pessoas a encontrá-lo.",
@@ -380,6 +424,9 @@
       insight_body: "¿Y después de calificar? ExamInsight lee el archivo de resultado de ExamScan y muestra cómo fue realmente la clase: nota promedio, tasa de aprobación, distribución de notas y, sobre todo, <strong>qué pregunta falló más la clase</strong>. Exporta el informe a Excel o PDF con un solo clic.",
       insight_btn: "Descargar ExamInsight para Windows",
       insight_btn_mac: "Descargar ExamInsight para macOS",
+      sheet_sub: "Windows · Gratis",
+      sheet_body: "¿Todavía no tienes la hoja de respuestas para calificar? ExamSheet la dibuja. Elige cuántas líneas de datos del alumno quieres, cuántos dígitos para la matrícula y el código de examen, cuántas preguntas y opciones, y combínalo todo en <strong>una hoja que ExamScan califica de inmediato</strong>. Exporta a PNG, PDF, Word o imprime directamente.",
+      sheet_btn: "Descargar ExamSheet para Windows",
       thanks_title: "Gracias por tu visita",
       thanks_body: "Gracias por visitar nuestro sitio web y por interesarte en estos programas. Significa mucho para nosotros y nos anima a seguir mejorándolos y a crear herramientas útiles para todos.",
       thanks_rate: "Si te resultan útiles, dale 5 estrellas a ExamScan en la App Store o en Google Play. Cada valoración ayuda a que más personas lo descubran.",
@@ -406,6 +453,9 @@
       insight_body: "Lalu setelah dinilai? ExamInsight membaca file hasil dari ExamScan dan menunjukkan sejauh mana kelas benar-benar menguasai materi: nilai rata-rata, tingkat kelulusan, distribusi nilai, dan yang terpenting <strong>soal mana yang paling banyak dijawab salah</strong>. Ekspor laporan ke Excel atau PDF hanya dengan satu klik.",
       insight_btn: "Unduh ExamInsight untuk Windows",
       insight_btn_mac: "Unduh ExamInsight untuk macOS",
+      sheet_sub: "Windows · Gratis",
+      sheet_body: "Belum punya lembar jawaban untuk dinilai? ExamSheet yang menggambarnya. Pilih berapa baris data peserta, berapa digit nomor induk dan kode soal, berapa pertanyaan dan pilihan jawaban, lalu gabungkan menjadi <strong>lembar yang langsung bisa dinilai ExamScan</strong>. Ekspor ke PNG, PDF, Word, atau cetak langsung.",
+      sheet_btn: "Unduh ExamSheet untuk Windows",
       thanks_title: "Terima kasih sudah berkunjung",
       thanks_body: "Terima kasih telah mengunjungi situs kami dan menaruh perhatian pada program ini. Hal itu sangat berarti bagi kami dan mendorong kami untuk terus menyempurnakannya serta membuat alat yang bermanfaat bagi semua orang.",
       thanks_rate: "Jika program ini bermanfaat, berilah ExamScan 5 bintang di App Store atau Google Play. Setiap ulasan membantu lebih banyak orang menemukannya.",
