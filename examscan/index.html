@@ -44,9 +44,28 @@
   .logo img { width:100%; height:100%; display:block; }
   h1 { font-size:30px; margin:8px 0 6px; letter-spacing:-.5px; }
   .tagline { color:var(--muted); font-size:17px; margin:0; }
+  /* Bon the: iPhone/iPad - Android - Windows - macOS.
+     KHONG dung auto-fit nua. auto-fit tu tinh so cot theo be rong con lai, nen o
+     bat ky be rong nao vua du BA the thi the thu tu bi day xuong mot minh -
+     dung loi 3+1 da thay khi them macOS. Chot so cot thi khong bao gio le. */
   .grid {
     display:grid; gap:20px; margin-top:28px;
-    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    grid-template-columns:repeat(2,1fr);   /* mac dinh 2x2 - luon can doi */
+  }
+  /* Du rong that su moi xep bon the mot hang. Tinh: .wrap toi da 960px, tru 40px
+     padding con 920px; bon cot cach nhau 20px -> moi the (920-60)/4 = 215px.
+     The con 215-28 = 187px ben trong, ma QR chiem 150+8*2+1*2 = 168px, nen phai
+     bot padding ngang cua the tu 20px xuong 14px moi con le hai ben ~9px. */
+  @media (min-width:980px) {
+    .grid { grid-template-columns:repeat(4,1fr); }
+    .grid .card { padding-left:14px; padding-right:14px; }
+  }
+  /* Man hinh hep: mot cot. Nguong 560px chon theo phep tinh chu khong uoc chung:
+     o vw=480 thi hai cot cho the 210px, ben trong con 170px ma QR chiem 168px -
+     tuc gan cham vien. Tu 560px tro xuong chuyen han sang mot cot. Cung dung
+     nguong voi .companion o cuoi file cho nhat quan. */
+  @media (max-width:560px) {
+    .grid { grid-template-columns:1fr; }
   }
   .card {
     background:var(--card); border:1px solid var(--border); border-radius:18px;
