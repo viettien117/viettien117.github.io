@@ -15,9 +15,10 @@
 
 OWNERDOMAIN=viettien117.github.io
 
-# CHUA DIEN — can Publisher ID lay o: ironSource platform > avatar goc duoi trai
-# > Account > tab API > muc Publisher ID. KHONG phai App Key 27a1ddc55.
-# ironsrc.com, <PublisherID>, DIRECT
+# Publisher ID 676223 — lay o: ironSource platform > avatar goc duoi trai >
+# Account > tab API > muc Publisher ID. KHONG phai App Key 27a1ddc55 — cai do dinh
+# danh rieng ban Android cua ExamScan, con day dinh danh CA TAI KHOAN.
+ironsrc.com, 676223, DIRECT
 
 media.net, 8CUH2L333, RESELLER
 sharethrough.com, 3817, RESELLER, d53b998a7bd4ecd2
