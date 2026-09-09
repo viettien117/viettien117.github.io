@@ -135,8 +135,28 @@
     font-weight:600; font-size:15px; transition:background .15s ease;
   }
   .btn-orange:hover { background:var(--orange-d); }
-  /* Hai nút tải (Windows / macOS) nằm cạnh nhau, xuống dòng khi màn hình hẹp. */
-  .btnrow { display:flex; flex-wrap:wrap; gap:10px; }
+  /* Hai nut tai (Windows / macOS): LUOI hai cot bang nhau, KHONG phai flex.
+     Flex cho nut co gian theo do dai chu, nen tren dien thoai "Tai ExamSheet cho
+     Windows" xuong hai dong roi gian het be ngang, con nut macOS ngan hon thi
+     nam mot dong va hep hon — hai nut lech nhau ca chieu ngang lan chieu cao.
+     Luoi 1fr cho hai nut y het nhau du chu dai ngan the nao.
+     240px: duoi nguong nay chuyen han sang mot cot, vi chuoi dai nhat
+     ("Descargar para Windows") do khoang 185px, cong dem 28px van con du cho.
+     min(240px,100%) chu KHONG phai 240px tran: minmax coi 240px la san cung, nen
+     tren may hep (vw 320 -> khung nut chi con 230px) mot cot 240px se TRAN ngang
+     ra ngoai the thay vi co lai. min() ha san xuong bang be ngang that. */
+  .btnrow {
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+    gap:10px; max-width:520px;
+  }
+  /* Chu can giua va cao bang nhau: o hai nut cung mot hang, luoi da keo cao bang
+     nhau san; min-height lo cho truong hop xuong hai hang tren man hinh hep. */
+  .btnrow > a {
+    display:flex; align-items:center; justify-content:center;
+    text-align:center; min-height:46px;
+    padding-left:14px; padding-right:14px;
+  }
 
   /* ---- ExamInsight (tông tím — màu icon của nó, để phân biệt với hai app kia) ---- */
   .btn-purple {
@@ -147,10 +167,10 @@
   .btn-purple:hover { background:var(--purple-d); }
 
   /* ---- ExamSheet (tông cyan — màu icon của nó) ----
-     Hiện CHỈ có nút Windows: bản macOS chưa dựng, chưa ký, chưa notarize.
-     Đừng thêm nút macOS trước khi có bản thật trên
-     github.com/viettien117/ExamSheet_macOS_updates — hứa một đường dẫn 404
-     còn tệ hơn là chưa nhắc tới. */
+     Da co ca hai nut tu 09/09/2026: ban macOS 1.0.3 da dung, ky va notarize, nam
+     o github.com/viettien117/ExamSheet_macOS_updates.
+     Luat cu van con hieu luc cho moi app sau nay: dung them nut truoc khi co ban
+     that — hua mot duong dan 404 con te hon la chua nhac toi. */
   .btn-cyan {
     display:inline-block; padding:11px 22px; border-radius:12px;
     background:var(--cyan); color:#fff; text-decoration:none;
@@ -185,7 +205,11 @@
     transition:border-color .15s ease, color .15s ease;
   }
   .btn-rate:hover { border-color:var(--green); color:var(--green); }
-  .thanks .btnrow { justify-content:center; margin:16px 0 14px; }
+  /* Hai nut danh gia cung dung luoi tren, nhung hep hon va can giua khoi chu.
+     margin:auto hai ben moi la thu can giua — justify-content khong co tac dung
+     khi cot la 1fr, vi luc do cot da chiem tron be ngang roi. */
+  .thanks .btnrow { max-width:460px; margin:16px auto 14px; }
+  .thanks .btnrow > a { min-height:42px; }
   /* Cau ket dung the rieng de khong bi ngat dong giua chung. */
   .thanks .thanks-sign { color:var(--text); font-weight:600; }
   @media (max-width:560px) {
@@ -271,14 +295,14 @@
           <strong>dùng được ngay với ExamScan</strong> để chấm tự động.
         </p>
         <div class="btnrow">
-          <a class="btn-orange" href="https://github.com/viettien117/ExamMixer_Windows_updates/releases/latest" target="_blank" rel="noopener" data-i18n="mixer_btn">Tải ExamMixer cho Windows</a>
+          <a class="btn-orange" href="https://github.com/viettien117/ExamMixer_Windows_updates/releases/latest" target="_blank" rel="noopener" data-i18n="btn_windows" data-i18n-aria="mixer_btn">Tải cho Windows</a>
           <!-- macOS co repo rieng: ExamMixer_macOS_updates.
                Bon file .dmg/.zip cua 1.1.0 da duoc chep sang do (dung nguyen file), nen
                /releases/latest ben do da co san thu de tai - khong phai cho 1.1.1.
 
                Repo Windows VAN GIU ban sao macOS 1.1.0: may dang chay 1.1.0 doc appcast
                o repo cu, xoa ben do la cat duong cap nhat cua ho. -->
-          <a class="btn-orange" href="https://github.com/viettien117/ExamMixer_macOS_updates/releases/latest" target="_blank" rel="noopener" data-i18n="mixer_btn_mac">Tải ExamMixer cho macOS</a>
+          <a class="btn-orange" href="https://github.com/viettien117/ExamMixer_macOS_updates/releases/latest" target="_blank" rel="noopener" data-i18n="btn_macos" data-i18n-aria="mixer_btn_mac">Tải cho macOS</a>
         </div>
       </div>
     </div>
@@ -295,8 +319,8 @@
           Excel hoặc PDF chỉ bằng một cú bấm.
         </p>
         <div class="btnrow">
-          <a class="btn-purple" href="https://github.com/viettien117/ExamInsight_Windows_updates/releases/latest" target="_blank" rel="noopener" data-i18n="insight_btn">Tải ExamInsight cho Windows</a>
-          <a class="btn-purple" href="https://github.com/viettien117/ExamInsight_macOS_updates/releases/latest" target="_blank" rel="noopener" data-i18n="insight_btn_mac">Tải ExamInsight cho macOS</a>
+          <a class="btn-purple" href="https://github.com/viettien117/ExamInsight_Windows_updates/releases/latest" target="_blank" rel="noopener" data-i18n="btn_windows" data-i18n-aria="insight_btn">Tải cho Windows</a>
+          <a class="btn-purple" href="https://github.com/viettien117/ExamInsight_macOS_updates/releases/latest" target="_blank" rel="noopener" data-i18n="btn_macos" data-i18n-aria="insight_btn_mac">Tải cho macOS</a>
         </div>
       </div>
     </div>
@@ -305,7 +329,7 @@
       <div class="icon"><img src="data:image/png;base64,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" alt="" width="60" height="60" loading="lazy"></div>
       <div class="body">
         <h2>ExamSheet</h2>
-        <p class="sub" data-i18n="sheet_sub">Windows · Miễn phí</p>
+        <p class="sub" data-i18n="sheet_sub">Windows · macOS · Miễn phí</p>
         <p data-i18n-html="sheet_body">
           Chưa có phiếu trả lời để chấm? ExamSheet vẽ ra phiếu đó. Bạn chọn số dòng
           thông tin thí sinh, số chữ số mã số sinh viên và mã đề, số câu và số phương
@@ -313,8 +337,8 @@
           ra PNG, PDF, Word hoặc in thẳng ra máy in.
         </p>
         <div class="btnrow">
-          <a class="btn-cyan" href="https://github.com/viettien117/ExamSheet_Windows_updates/releases/latest" target="_blank" rel="noopener" data-i18n="sheet_btn">Tải ExamSheet cho Windows</a>
-          <a class="btn-cyan" href="https://github.com/viettien117/ExamSheet_macOS_updates/releases/latest" target="_blank" rel="noopener" data-i18n="sheet_btn_mac">Tải ExamSheet cho macOS</a>
+          <a class="btn-cyan" href="https://github.com/viettien117/ExamSheet_Windows_updates/releases/latest" target="_blank" rel="noopener" data-i18n="btn_windows" data-i18n-aria="sheet_btn">Tải cho Windows</a>
+          <a class="btn-cyan" href="https://github.com/viettien117/ExamSheet_macOS_updates/releases/latest" target="_blank" rel="noopener" data-i18n="btn_macos" data-i18n-aria="sheet_btn_mac">Tải cho macOS</a>
         </div>
       </div>
     </div>
@@ -529,6 +553,15 @@
     document.querySelectorAll("[data-i18n-html]").forEach(function (el) {
       var v = t[el.getAttribute("data-i18n-html")];
       if (v != null) el.innerHTML = v;
+    });
+    // Nut tai o cac the cong cu di kem chi ghi "Tai cho Windows" — ten app da nam
+    // ngay tren dau the roi, viet lai lan nua thi chu dai gap ruoi va nut xuong
+    // hai dong. Nhung nguoi dung trinh doc man hinh KHONG thay ca the, ho nghe
+    // lan luot tung nut: bon nut "Tai cho Windows" giong het nhau thi khong biet
+    // nut nao cua app nao. aria-label giu lai ten day du cho ho.
+    document.querySelectorAll("[data-i18n-aria]").forEach(function (el) {
+      var v = t[el.getAttribute("data-i18n-aria")];
+      if (v != null) el.setAttribute("aria-label", v);
     });
     select.value = lang;
   }
