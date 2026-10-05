@@ -129,12 +129,6 @@
   .companion h2 { font-size:20px; margin:2px 0 4px; }
   .companion .sub { margin:0 0 12px; }
   .companion p { margin:0 0 14px; font-size:15px; }
-  .btn-orange {
-    display:inline-block; padding:11px 22px; border-radius:12px;
-    background:var(--orange); color:#fff; text-decoration:none;
-    font-weight:600; font-size:15px; transition:background .15s ease;
-  }
-  .btn-orange:hover { background:var(--orange-d); }
   /* Hai nut tai (Windows / macOS): LUOI hai cot bang nhau, KHONG phai flex.
      Flex cho nut co gian theo do dai chu, nen tren dien thoai "Tai ExamSheet cho
      Windows" xuong hai dong roi gian het be ngang, con nut macOS ngan hon thi
@@ -157,29 +151,26 @@
     text-align:center; min-height:46px;
     padding-left:14px; padding-right:14px;
   }
-  /* Nut App Store chiem tron mot hang phia tren hai nut Windows / macOS: ba nut trong
-     luoi hai cot se de nut thu ba lac mot minh o hang duoi, rong nua the. */
-  .btnrow > a.wide { grid-column:1 / -1; }
-
-  /* ---- ExamInsight (tông tím — màu icon của nó, để phân biệt với hai app kia) ---- */
-  .btn-purple {
-    display:inline-block; padding:11px 22px; border-radius:12px;
-    background:var(--purple); color:#fff; text-decoration:none;
-    font-weight:600; font-size:15px; transition:background .15s ease;
+  /* Luoi the nen tang trong the cong cu di kem — cung khuon the ExamScan o dau trang
+     (bieu tuong, ten, QR, nut tai; user yeu cau 05/10/2026), nut mang mau cua app do.
+     auto-fit + 210px: QR chiem 168px, the can >= 168 + 2*14 = 196px; duoi nguong do tu
+     xuong hang thay vi tran. Thang .grid (4 cot o >= 980px) vi .grid.mini cu the hon. */
+  .grid.mini {
+    margin-top:18px; gap:16px;
+    grid-template-columns:repeat(auto-fit, minmax(min(210px, 100%), 1fr));
   }
-  .btn-purple:hover { background:var(--purple-d); }
+  .companion .card { padding:22px 14px; }
+  .companion .card h2 { font-size:19px; margin:6px 0 2px; }
+  .companion .card .sub { margin:0 0 16px; font-size:13px; }
+  .companion.mixer   .btn { background:var(--orange); }
+  .companion.mixer   .btn:hover { background:var(--orange-d); }
+  .companion.insight .btn { background:var(--purple); }
+  .companion.insight .btn:hover { background:var(--purple-d); }
+  .companion.sheet   .btn { background:var(--cyan); }
+  .companion.sheet   .btn:hover { background:var(--cyan-d); }
 
-  /* ---- ExamSheet (tông cyan — màu icon của nó) ----
-     Da co ca hai nut tu 09/09/2026: ban macOS 1.0.3 da dung, ky va notarize, nam
-     o github.com/viettien117/ExamSheet_macOS_updates.
-     Luat cu van con hieu luc cho moi app sau nay: dung them nut truoc khi co ban
-     that — hua mot duong dan 404 con te hon la chua nhac toi. */
-  .btn-cyan {
-    display:inline-block; padding:11px 22px; border-radius:12px;
-    background:var(--cyan); color:#fff; text-decoration:none;
-    font-weight:600; font-size:15px; transition:background .15s ease;
-  }
-  .btn-cyan:hover { background:var(--cyan-d); }
+  /* Luat cho moi the cong cu di kem: dung them nut (va QR) truoc khi co ban that —
+     hua mot duong dan 404 con te hon la chua nhac toi. */
   /* Hai thẻ công cụ đi kèm xếp chồng, cách nhau đều. */
   .companion + .companion { margin-top:20px; }
   .section-label {
@@ -297,15 +288,21 @@
           và phương án để chống nhìn bài), rồi xuất đề ra Word/PDF kèm bảng đáp án
           <strong>dùng được ngay với ExamScan</strong> để chấm tự động.
         </p>
-        <div class="btnrow">
-          <a class="btn-orange" href="https://github.com/viettien117/ExamMixer_Windows_updates/releases/latest" target="_blank" rel="noopener" data-i18n="btn_windows" data-i18n-aria="mixer_btn">Tải cho Windows</a>
-          <!-- macOS co repo rieng: ExamMixer_macOS_updates.
-               Bon file .dmg/.zip cua 1.1.0 da duoc chep sang do (dung nguyen file), nen
-               /releases/latest ben do da co san thu de tai - khong phai cho 1.1.1.
-
-               Repo Windows VAN GIU ban sao macOS 1.1.0: may dang chay 1.1.0 doc appcast
-               o repo cu, xoa ben do la cat duong cap nhat cua ho. -->
-          <a class="btn-orange" href="https://github.com/viettien117/ExamMixer_macOS_updates/releases/latest" target="_blank" rel="noopener" data-i18n="btn_macos" data-i18n-aria="mixer_btn_mac">Tải cho macOS</a>
+        <div class="grid mini">
+          <div class="card">
+            <div class="platform">💻</div>
+            <h2>Windows</h2>
+            <p class="sub" data-i18n="sub_windows">Máy tính / PC</p>
+            <img class="qr" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASgAAAEoAQMAAADRyf5aAAAABlBMVEUPFyr///9JwCnAAAABtklEQVR4nO1a23HDMAzT/kvLZ4l40PIGglsnTY0vHAmCUMbY15xzjrne1oV/9CuozcFLz1h0rd/hH9+nQRkT696ckJj3bd9EBPVhYjUfOrHa7+QrqF45xRSl6r++bkZJxDd8uop99Cso0fj785mPQclAsA6p9/YwqGKiaqhatFoR3cpnQdkAlH2oD9C5EjAOxqDQdJgDJfKaECq1oLyQUDx7AKr05GqDknyVdOmu9oNuBSUmtAnJtbFP9RpUt6DULJuN1ZnQr6C2cUdOQ9mHbtHZB0UmVERwpXL2eAlKTJhfoCn9ibyCYiYIZ6r9B12JB2Y2rkdBn6jyWCY5FF3FgoJROLQeI1I0BQUHQbdgMt9i6aAU0NNqaT0qAkVfUGSCRlSTkXzZAhCUjT6UFboSY1EFFxRbD2EqMkPvSwX4QSlflcUyp6/6kssPSi6fbdm61P4KChRZAGFZatevoOwLEtiBlKOWmJkHC6qpFA/V7BztOIMMSifX2hTtZJatGBSZsJNGRBKtpjxkDcoSB37Zom3XDPeDOphgRChXAbMalGw7oi0rMtOxHrZej5LL8u0Rjemb5AhqPBlm1EXOEwN8AAAAAElFTkSuQmCC" alt="QR ExamMixer Windows" width="150" height="150" loading="lazy">
+            <a class="btn" href="https://github.com/viettien117/ExamMixer_Windows_updates/releases/latest" target="_blank" rel="noopener" data-i18n="btn_windows" data-i18n-aria="mixer_btn">Tải cho Windows</a>
+          </div>
+          <div class="card">
+            <div class="platform">🖥️</div>
+            <h2>macOS</h2>
+            <p class="sub" data-i18n="sub_macos">Máy Mac</p>
+            <img class="qr" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASgAAAEoAQMAAADRyf5aAAAABlBMVEUPFyr///9JwCnAAAABrElEQVR4nO2aUXLEMAxCc/9Lu1NbeiBvbhCybSbr5YtREMJ+nnMt/tbaX//v52ZXUJugtZ5i6dB1Vvbz+TUoY+KU02aovu3HzZvWgppMnM/mqcqr1oJ6Z+IIVL97rV9B/TBhaiVRR8WmfgVF53v/3P3x86hdOFU71FvVGFdQMHF1xn7jpGFoWlCHLhWTyKmHvgcFE23a3dKrsoZNC2o402aGiqrVbpdBSbTKrYo12PNaC8qqyTwq4l7UBWVMOFWl/DZ4sxwU7c8Go6JMHt9mpaCel6ESwkZfDAqHYOEEbKHveg2DgokxAJn8F23T8AeFszJt74KyigtKwc0Yf2aJEb0G1R60WyEJjqkYJiwokyv2gsxHKBwMypi4t4fMzjMDBWVMWCxN/qUcTFuOQV2Nb4T1owF48X0dhc+i3jQAeR4dFMm8/o0p6ZYlh0Epoafa2j78bA4FZe8cHKHzzI++P/R51BUZjocewy3QCQpB1wETHrVnFBRMMFuj77RS5YRBXUy4YXDC5P2DupgYIYSNRFaFQaFM3gvtOI6OaQbVqY06nx2c4xCKW7Dn66g/cjh0pU8WoJMAAAAASUVORK5CYII=" alt="QR ExamMixer macOS" width="150" height="150" loading="lazy">
+            <a class="btn" href="https://github.com/viettien117/ExamMixer_macOS_updates/releases/latest" target="_blank" rel="noopener" data-i18n="btn_macos" data-i18n-aria="mixer_btn_mac">Tải cho macOS</a>
+          </div>
         </div>
       </div>
     </div>
@@ -321,10 +318,28 @@
           trọng nhất là <strong>câu nào cả lớp sai nhiều nhất</strong>. Xuất báo cáo ra
           Excel hoặc PDF chỉ bằng một cú bấm.
         </p>
-        <div class="btnrow">
-          <a class="btn-purple wide" href="https://apps.apple.com/app/id6816304403" target="_blank" rel="noopener" data-i18n="btn_ios" data-i18n-aria="insight_btn_ios">Tải trên App Store</a>
-          <a class="btn-purple" href="https://github.com/viettien117/ExamInsight_Windows_updates/releases/latest" target="_blank" rel="noopener" data-i18n="btn_windows" data-i18n-aria="insight_btn">Tải cho Windows</a>
-          <a class="btn-purple" href="https://github.com/viettien117/ExamInsight_macOS_updates/releases/latest" target="_blank" rel="noopener" data-i18n="btn_macos" data-i18n-aria="insight_btn_mac">Tải cho macOS</a>
+        <div class="grid mini">
+          <div class="card">
+            <div class="platform">🍎</div>
+            <h2>iPhone / iPad</h2>
+            <p class="sub">App Store</p>
+            <img class="qr" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOgAAADoAQMAAADfZzo7AAAABlBMVEUPFyr///9JwCnAAAAA/0lEQVR4nN2WQRLDMAgD/f9P06mRsOz8YNMm47DuARWE1+qratWqKr/cF4nW/9rPWfbGvQdI912XJP1Op9akd9FpVjqaSgI3df/3Ty+AqFzr+Txex6E77dfEIkijyrxX9Sl8HO1KH2E8obUAUqc9D6mSTU+iLu8Qw18kHTtr8wqVikntaBrMHlLSBUhF5hxyNgKpKv1Y+YQcZdGcVy7+qxdg1BWt0h5dbGU4+o6lrgJVPZEq5/DuKAUkdV+HiU8P0GiHbF3amCMLRn0YUajj0eQ4ai0uX8t+p1Fn72PIVHsTKpUU1uE0PZReFq4WQNJRQH79+QmLrpP4EWhOIzT6Az9PY1RldZukAAAAAElFTkSuQmCC" alt="QR ExamInsight iPhone / iPad" width="150" height="150" loading="lazy">
+            <a class="btn" href="https://apps.apple.com/app/id6816304403" target="_blank" rel="noopener" data-i18n="btn_ios" data-i18n-aria="insight_btn_ios">Tải trên App Store</a>
+          </div>
+          <div class="card">
+            <div class="platform">💻</div>
+            <h2>Windows</h2>
+            <p class="sub" data-i18n="sub_windows">Máy tính / PC</p>
+            <img class="qr" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASgAAAEoAQMAAADRyf5aAAAABlBMVEUPFyr///9JwCnAAAABtklEQVR4nO2aWZLDMBBCff9LKxVLPOgsJzCexYnCzAeFabql69rXWuu61vu2r3vlfRtXUeJlM3RTdm2y7husFQUT9w+CQlb3y/NpUT+YSMb0vqi/TGym5FNnoahvJtATZKW+pn8Vpcr35+ujPhaVAUKqo0DyYVGmiWQljs43+ipqMhF566SusyjKigomyKjb6MUZ1kXNLArtSEFHaep89vp5HIuSnKSncPutKtytKJggZClrHc5GZSxqMJHtolMpRSFcrCiaIqTFMEdOlk3R41HqGlUWyWG0S9ZVUfTaElW0ijZ+Vc+ijpj0yGHxqp0uCkVFF51RPvIWYisKJoIgS0tPJBZWlHOW0qk7HqZgHkkXpSJIcx0BFusnfxUFE0rvMbeR1TtCFJVT+jD07B+9XFQQ5DifAkN0SK2o2KVVfPc4OgRW1GDCu9me3PA65xNFxfArRDRPTowR2dNR3vhgIQY6/vui7O2Op5wNUMCfe5BFxc61N9ZsVwwUi4KJOJ+jswBDU/wuKpnIdsiHmeaZk6IGE7ldFAecPlh9OurMCMHjV/t/fJ0vfDhKLkXPzUGwX162Ho56AaB6FQV847k0AAAAAElFTkSuQmCC" alt="QR ExamInsight Windows" width="150" height="150" loading="lazy">
+            <a class="btn" href="https://github.com/viettien117/ExamInsight_Windows_updates/releases/latest" target="_blank" rel="noopener" data-i18n="btn_windows" data-i18n-aria="insight_btn">Tải cho Windows</a>
+          </div>
+          <div class="card">
+            <div class="platform">🖥️</div>
+            <h2>macOS</h2>
+            <p class="sub" data-i18n="sub_macos">Máy Mac</p>
+            <img class="qr" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASgAAAEoAQMAAADRyf5aAAAABlBMVEUPFyr///9JwCnAAAABs0lEQVR4nO2aUXKEYAiDvf+l7SjwJfxtT2DcWXU1TxkIAfa66rjv67r77jneSz/REVTzczU777muz03R9rAWFEy83+apmXnPw6F9gxITFVxFVefhH3wFJSYgpnJxcvPg6/OoUfY+dyrOk61fQU3l++dz1Megyj60dFW2off+MqhONaoinkE6P++CgolxD3DV3Ii4DrSgVP6UgAg6lsLyNKiWcElURRLeS0kbFPKlq1ohu6MKBIWaq2VEvdQyLsTXUaSbgoraiHIFBROjUuShl8LuF4MyJvo6rRAWwvkMypkor3W0imoZsa1BjTa5jTCDOhMejFhQVARrhjSokGENall36yDVHJmnD4ruRpN6k/5fY+mgGNCbWZuB8wSVzVODWrNnn9dPdh5D/KA0dGayY7+ZqQa1mJAzlcbjtlgaBeU9kDYddJgWX4ypg5p2eg2fl977XVDqIn0BZOFlhTEo3/yYIVMwjXQFZcPTiSLsxbL4K7CCss01i0dPTPnXoPb/c8hAV681ZA1qM8FKSEta4iuogwnzpub1fYYRlDhRVFmbaG1jUFuntJMVZ6NoS8vub6N+AFHXlIV0Pr2QAAAAAElFTkSuQmCC" alt="QR ExamInsight macOS" width="150" height="150" loading="lazy">
+            <a class="btn" href="https://github.com/viettien117/ExamInsight_macOS_updates/releases/latest" target="_blank" rel="noopener" data-i18n="btn_macos" data-i18n-aria="insight_btn_mac">Tải cho macOS</a>
+          </div>
         </div>
       </div>
     </div>
@@ -340,10 +355,28 @@
           án, rồi ghép thành <strong>phiếu chấm được ngay bằng ExamScan</strong>. Xuất
           ra PNG, PDF, Word hoặc in thẳng ra máy in.
         </p>
-        <div class="btnrow">
-          <a class="btn-cyan wide" href="https://apps.apple.com/app/id6816303954" target="_blank" rel="noopener" data-i18n="btn_ios" data-i18n-aria="sheet_btn_ios">Tải trên App Store</a>
-          <a class="btn-cyan" href="https://github.com/viettien117/ExamSheet_Windows_updates/releases/latest" target="_blank" rel="noopener" data-i18n="btn_windows" data-i18n-aria="sheet_btn">Tải cho Windows</a>
-          <a class="btn-cyan" href="https://github.com/viettien117/ExamSheet_macOS_updates/releases/latest" target="_blank" rel="noopener" data-i18n="btn_macos" data-i18n-aria="sheet_btn_mac">Tải cho macOS</a>
+        <div class="grid mini">
+          <div class="card">
+            <div class="platform">🍎</div>
+            <h2>iPhone / iPad</h2>
+            <p class="sub">App Store</p>
+            <img class="qr" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOgAAADoAQMAAADfZzo7AAAABlBMVEUPFyr///9JwCnAAAABAUlEQVR4nOWWQRLDIAwD+f+n3SGSbGj7gg3pJJQ1B4xkWEut9lNV+qPPNBLdY5vl90R5FEmVC4coE+6SqVPxxNQLqBXwAqoUtAD29v94AUSPanY8f2odgz7LflYeyc9YAWmG8onknRIgPQaTg/idSVO/vf2XFIh03VHTFpBmxRNh1+sihqNzXrmrBM1ZRaPZ5k5BoWl9Gdw13PUbSKPz7P1Ucyb1qi2C7L9n8ahcnVo2EREGjaqS3U5vhxOpMuGMpOdYIr3vJVPJOz0s2omI29XNi0dzF4noU7Q1E0hdxOdMttPbCEiaIzqBLQEqtQCuPpLmcDpHZwqOrtb2uNpOB9IPLZfbzVOB5+YAAAAASUVORK5CYII=" alt="QR ExamSheet iPhone / iPad" width="150" height="150" loading="lazy">
+            <a class="btn" href="https://apps.apple.com/app/id6816303954" target="_blank" rel="noopener" data-i18n="btn_ios" data-i18n-aria="sheet_btn_ios">Tải trên App Store</a>
+          </div>
+          <div class="card">
+            <div class="platform">💻</div>
+            <h2>Windows</h2>
+            <p class="sub" data-i18n="sub_windows">Máy tính / PC</p>
+            <img class="qr" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASgAAAEoAQMAAADRyf5aAAAABlBMVEUPFyr///9JwCnAAAABtUlEQVR4nO2aWQ4DIQxDe/9LT0WJnw2aG9Rd0Czvy0qCCXw++/Os77PG/XvWuIbjU+qnytLp94+7GJZqpVBCcbNE2UGkQNpP418KJX7BtW8l4+Rn6lUKJaZekZfvepWaykS6Ta2iph31q1TOfC/fl/nxv6kJpl2YCCVV+gi1UlZJtV6i4SxmliyFEjvQJM6IJV8x9apUKBEZimQy+yNmqVDCF5SoI6SwFaVkuCxXyGb/4NJWamZQ6jtJymPHYins+pQxT4bOPpZGpbzScXF3z2aMBsvJUkgUa+1xFzZjMwWUsuXSKGeBxYj5s5SjBn8qD5uKEWylrpCSIFoH8S7V+3uKtJQ5fV6ahqWcdTZasfahOW0BS2Vlir5ENn3uaPt7KnpekYzIJfdaCh+vvjN2lWmRTbVSKKGwoqxn/ytWkaW0BHK+HYbB8VUqlKCrijuN+qWqVQolotdMwyb8hO1FqXCi57711ZFwc6zUset27hPFcqiUlTg2GHH5vDt8fqk4GcEseXUG8xRPqUuJiDsbVxv9UnHciy4OIUbrvpSV4CzOdSoujzWVug6o6oIGhF6yWVtqKfEFYE2TlI//s24AAAAASUVORK5CYII=" alt="QR ExamSheet Windows" width="150" height="150" loading="lazy">
+            <a class="btn" href="https://github.com/viettien117/ExamSheet_Windows_updates/releases/latest" target="_blank" rel="noopener" data-i18n="btn_windows" data-i18n-aria="sheet_btn">Tải cho Windows</a>
+          </div>
+          <div class="card">
+            <div class="platform">🖥️</div>
+            <h2>macOS</h2>
+            <p class="sub" data-i18n="sub_macos">Máy Mac</p>
+            <img class="qr" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASgAAAEoAQMAAADRyf5aAAAABlBMVEUPFyr///9JwCnAAAABtElEQVR4nO1aW46DQAzj/pdmVeJXhu0JalrRAv6yMo7j4brmuPW97+fyc55THEU9BN33NSzN/+f3Q9lzHwQWRSamnIYycKNaw9OiXkygmoY7MlbUdyZQW1h71K+iXkxIrZ774hO0bf0qSp3v/8/ZH38eNT0RZQUdY43pKEpMjM5L82XApGGyGkXZmqKsbCgsVLSpRUWDpDq5iIatEPyiaNnT3id18wB1VRSYgMpf75EoJsmicqZG8bBJSutJXVGLCVQadJ6WdYt+UWEVbCZwER1RZViUYwhVFEfuMBgZjBUVei4rLy/BzMLjeVGUMvfA8A5HhFiUswiTIVPvFLEoh4O0p7RhO3BlwRVli+CEAgaf/oI6X1QwETW2fMSmryimqcy3HH957yyGx6Iyj5Dh1y6aiovfoiBSDiJIkm1YZGJFgYEg4ojtM48uKjQpth81eTu0oNsvSsouFxHe9dgcKmqtuYwGbS+UixXlxWbvHtmzdxqLWkw4xs/JJ81YUYuJmK1X7prFV9TJhNrgQZjG7qIOJuIq2HSkU9RSJm4J5VSZr84VpdTGC1NtcSVix/ur1w+j/gAJpgQkfus54wAAAABJRU5ErkJggg==" alt="QR ExamSheet macOS" width="150" height="150" loading="lazy">
+            <a class="btn" href="https://github.com/viettien117/ExamSheet_macOS_updates/releases/latest" target="_blank" rel="noopener" data-i18n="btn_macos" data-i18n-aria="sheet_btn_mac">Tải cho macOS</a>
+          </div>
         </div>
       </div>
     </div>
