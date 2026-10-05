@@ -157,6 +157,9 @@
     text-align:center; min-height:46px;
     padding-left:14px; padding-right:14px;
   }
+  /* Nut App Store chiem tron mot hang phia tren hai nut Windows / macOS: ba nut trong
+     luoi hai cot se de nut thu ba lac mot minh o hang duoi, rong nua the. */
+  .btnrow > a.wide { grid-column:1 / -1; }
 
   /* ---- ExamInsight (tông tím — màu icon của nó, để phân biệt với hai app kia) ---- */
   .btn-purple {
@@ -311,7 +314,7 @@
       <div class="icon"><img src="data:image/png;base64,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" alt="" width="60" height="60" loading="lazy"></div>
       <div class="body">
         <h2>ExamInsight</h2>
-        <p class="sub" data-i18n="insight_sub">Windows · macOS · Miễn phí</p>
+        <p class="sub" data-i18n="insight_sub">iPhone / iPad · Windows · macOS · Miễn phí</p>
         <p data-i18n-html="insight_body">
           Chấm xong rồi thì sao? ExamInsight đọc file kết quả của ExamScan và cho biết
           cả lớp làm được đến đâu: điểm trung bình, tỷ lệ đạt, phân phối điểm, và quan
@@ -319,6 +322,7 @@
           Excel hoặc PDF chỉ bằng một cú bấm.
         </p>
         <div class="btnrow">
+          <a class="btn-purple wide" href="https://apps.apple.com/app/id6816304403" target="_blank" rel="noopener" data-i18n="btn_ios" data-i18n-aria="insight_btn_ios">Tải trên App Store</a>
           <a class="btn-purple" href="https://github.com/viettien117/ExamInsight_Windows_updates/releases/latest" target="_blank" rel="noopener" data-i18n="btn_windows" data-i18n-aria="insight_btn">Tải cho Windows</a>
           <a class="btn-purple" href="https://github.com/viettien117/ExamInsight_macOS_updates/releases/latest" target="_blank" rel="noopener" data-i18n="btn_macos" data-i18n-aria="insight_btn_mac">Tải cho macOS</a>
         </div>
@@ -329,7 +333,7 @@
       <div class="icon"><img src="data:image/png;base64,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" alt="" width="60" height="60" loading="lazy"></div>
       <div class="body">
         <h2>ExamSheet</h2>
-        <p class="sub" data-i18n="sheet_sub">Windows · macOS · Miễn phí</p>
+        <p class="sub" data-i18n="sheet_sub">iPhone / iPad · Windows · macOS · Miễn phí</p>
         <p data-i18n-html="sheet_body">
           Chưa có phiếu trả lời để chấm? ExamSheet vẽ ra phiếu đó. Bạn chọn số dòng
           thông tin thí sinh, số chữ số mã số sinh viên và mã đề, số câu và số phương
@@ -337,6 +341,7 @@
           ra PNG, PDF, Word hoặc in thẳng ra máy in.
         </p>
         <div class="btnrow">
+          <a class="btn-cyan wide" href="https://apps.apple.com/app/id6816303954" target="_blank" rel="noopener" data-i18n="btn_ios" data-i18n-aria="sheet_btn_ios">Tải trên App Store</a>
           <a class="btn-cyan" href="https://github.com/viettien117/ExamSheet_Windows_updates/releases/latest" target="_blank" rel="noopener" data-i18n="btn_windows" data-i18n-aria="sheet_btn">Tải cho Windows</a>
           <a class="btn-cyan" href="https://github.com/viettien117/ExamSheet_macOS_updates/releases/latest" target="_blank" rel="noopener" data-i18n="btn_macos" data-i18n-aria="sheet_btn_mac">Tải cho macOS</a>
         </div>
@@ -390,14 +395,16 @@
       mixer_body: "Trộn đề thi trắc nghiệm từ ngân hàng câu hỏi soạn sẵn trong file Word. Từ một bộ câu hỏi, ExamMixer tự sinh nhiều mã đề khác nhau (đảo thứ tự câu và phương án để chống nhìn bài), rồi xuất đề ra Word/PDF kèm bảng đáp án <strong>dùng được ngay với ExamScan</strong> để chấm tự động.",
       mixer_btn: "Tải ExamMixer cho Windows",
       mixer_btn_mac: "Tải ExamMixer cho macOS",
-      insight_sub: "Windows · macOS · Miễn phí",
+      insight_sub: "iPhone / iPad · Windows · macOS · Miễn phí",
       insight_body: "Chấm xong rồi thì sao? ExamInsight đọc file kết quả của ExamScan và cho biết cả lớp làm được đến đâu: điểm trung bình, tỷ lệ đạt, phân phối điểm, và quan trọng nhất là <strong>câu nào cả lớp sai nhiều nhất</strong>. Xuất báo cáo ra Excel hoặc PDF chỉ bằng một cú bấm.",
       insight_btn: "Tải ExamInsight cho Windows",
       insight_btn_mac: "Tải ExamInsight cho macOS",
-      sheet_sub: "Windows · macOS · Miễn phí",
+      insight_btn_ios: "Tải ExamInsight trên App Store",
+      sheet_sub: "iPhone / iPad · Windows · macOS · Miễn phí",
       sheet_body: "Chưa có phiếu trả lời để chấm? ExamSheet vẽ ra phiếu đó. Bạn chọn số dòng thông tin thí sinh, số chữ số mã số sinh viên và mã đề, số câu và số phương án, rồi ghép thành <strong>phiếu chấm được ngay bằng ExamScan</strong>. Xuất ra PNG, PDF, Word hoặc in thẳng ra máy in.",
       sheet_btn: "Tải ExamSheet cho Windows",
       sheet_btn_mac: "Tải ExamSheet cho macOS",
+      sheet_btn_ios: "Tải ExamSheet trên App Store",
       thanks_title: "Cảm ơn bạn đã ghé thăm",
       thanks_body: "Cảm ơn bạn đã ghé thăm website của chúng tôi và dành sự quan tâm cho chương trình. Đây là động lực rất lớn, khích lệ chúng tôi tiếp tục nâng cấp, cải tiến và tạo ra những chương trình có ích cho mọi người.",
       thanks_rate: "Nếu thấy chương trình hữu ích, hãy dành cho ExamScan 5 sao trên App Store hoặc Google Play. Mỗi lượt đánh giá giúp nhiều người khác dễ tìm thấy chương trình hơn.",
@@ -422,14 +429,16 @@
       mixer_body: "Mix multiple-choice exams from a question bank written in Word. From a single set of questions, ExamMixer generates several exam codes (shuffling questions and options to prevent copying), then exports the papers to Word/PDF along with an answer key that <strong>works directly with ExamScan</strong> for automatic grading.",
       mixer_btn: "Download ExamMixer for Windows",
       mixer_btn_mac: "Download ExamMixer for macOS",
-      insight_sub: "Windows · macOS · Free",
+      insight_sub: "iPhone / iPad · Windows · macOS · Free",
       insight_body: "And once the papers are graded? ExamInsight reads the result file from ExamScan and tells you how the class actually did: average score, pass rate, score distribution and, above all, <strong>which question the class got wrong most often</strong>. Export the report to Excel or PDF in one click.",
       insight_btn: "Download ExamInsight for Windows",
       insight_btn_mac: "Download ExamInsight for macOS",
-      sheet_sub: "Windows · macOS · Free",
+      insight_btn_ios: "Download ExamInsight on the App Store",
+      sheet_sub: "iPhone / iPad · Windows · macOS · Free",
       sheet_body: "No answer sheet to grade yet? ExamSheet draws it. Choose how many candidate-info lines you need, how many digits for the student ID and the test code, how many questions and options, then combine it all into <strong>a sheet ExamScan can grade straight away</strong>. Export to PNG, PDF, Word, or print it directly.",
       sheet_btn: "Download ExamSheet for Windows",
       sheet_btn_mac: "Download ExamSheet for macOS",
+      sheet_btn_ios: "Download ExamSheet on the App Store",
       thanks_title: "Thank you for stopping by",
       thanks_body: "Thank you for visiting our website and for taking an interest in these programs. It means a great deal to us, and it keeps us improving them and building new tools that help people.",
       thanks_rate: "If you find them useful, please give ExamScan 5 stars on the App Store or Google Play. Every rating helps more people discover it.",
@@ -454,14 +463,16 @@
       mixer_body: "Monte provas de múltipla escolha a partir de um banco de questões feito no Word. Com um único conjunto de questões, o ExamMixer gera vários modelos de prova (embaralhando questões e alternativas para evitar cola) e exporta os arquivos em Word/PDF com um gabarito que <strong>funciona direto no ExamScan</strong> para correção automática.",
       mixer_btn: "Baixar o ExamMixer para Windows",
       mixer_btn_mac: "Baixar o ExamMixer para macOS",
-      insight_sub: "Windows · macOS · Grátis",
+      insight_sub: "iPhone / iPad · Windows · macOS · Grátis",
       insight_body: "E depois da correção? O ExamInsight lê o arquivo de resultado do ExamScan e mostra como a turma realmente se saiu: nota média, taxa de aprovação, distribuição de notas e, acima de tudo, <strong>qual questão a turma mais errou</strong>. Exporte o relatório em Excel ou PDF com um clique.",
       insight_btn: "Baixar o ExamInsight para Windows",
       insight_btn_mac: "Baixar o ExamInsight para macOS",
-      sheet_sub: "Windows · macOS · Grátis",
+      insight_btn_ios: "Baixar o ExamInsight na App Store",
+      sheet_sub: "iPhone / iPad · Windows · macOS · Grátis",
       sheet_body: "Ainda não tem a folha de respostas para corrigir? O ExamSheet desenha essa folha. Escolha quantas linhas de dados do aluno quer, quantos dígitos para a matrícula e o código da prova, quantas questões e alternativas, e junte tudo em <strong>uma folha que o ExamScan corrige de imediato</strong>. Exporte em PNG, PDF, Word ou imprima direto.",
       sheet_btn: "Baixar o ExamSheet para Windows",
       sheet_btn_mac: "Baixar o ExamSheet para macOS",
+      sheet_btn_ios: "Baixar o ExamSheet na App Store",
       thanks_title: "Obrigado pela sua visita",
       thanks_body: "Obrigado por visitar o nosso site e por se interessar por estes programas. Isso significa muito para nós e nos incentiva a continuar melhorando e a criar ferramentas úteis para todos.",
       thanks_rate: "Se achar os programas úteis, dê 5 estrelas ao ExamScan na App Store ou no Google Play. Cada avaliação ajuda mais pessoas a encontrá-lo.",
@@ -486,14 +497,16 @@
       mixer_body: "Crea exámenes de opción múltiple a partir de un banco de preguntas escrito en Word. Con un solo conjunto de preguntas, ExamMixer genera varios modelos de examen (baraja preguntas y opciones para evitar copias) y exporta los exámenes en Word/PDF junto con una clave de respuestas que <strong>funciona directamente con ExamScan</strong> para calificar de forma automática.",
       mixer_btn: "Descargar ExamMixer para Windows",
       mixer_btn_mac: "Descargar ExamMixer para macOS",
-      insight_sub: "Windows · macOS · Gratis",
+      insight_sub: "iPhone / iPad · Windows · macOS · Gratis",
       insight_body: "¿Y después de calificar? ExamInsight lee el archivo de resultado de ExamScan y muestra cómo fue realmente la clase: nota promedio, tasa de aprobación, distribución de notas y, sobre todo, <strong>qué pregunta falló más la clase</strong>. Exporta el informe a Excel o PDF con un solo clic.",
       insight_btn: "Descargar ExamInsight para Windows",
       insight_btn_mac: "Descargar ExamInsight para macOS",
-      sheet_sub: "Windows · macOS · Gratis",
+      insight_btn_ios: "Descargar ExamInsight en la App Store",
+      sheet_sub: "iPhone / iPad · Windows · macOS · Gratis",
       sheet_body: "¿Todavía no tienes la hoja de respuestas para calificar? ExamSheet la dibuja. Elige cuántas líneas de datos del alumno quieres, cuántos dígitos para la matrícula y el código de examen, cuántas preguntas y opciones, y combínalo todo en <strong>una hoja que ExamScan califica de inmediato</strong>. Exporta a PNG, PDF, Word o imprime directamente.",
       sheet_btn: "Descargar ExamSheet para Windows",
       sheet_btn_mac: "Descargar ExamSheet para macOS",
+      sheet_btn_ios: "Descargar ExamSheet en la App Store",
       thanks_title: "Gracias por tu visita",
       thanks_body: "Gracias por visitar nuestro sitio web y por interesarte en estos programas. Significa mucho para nosotros y nos anima a seguir mejorándolos y a crear herramientas útiles para todos.",
       thanks_rate: "Si te resultan útiles, dale 5 estrellas a ExamScan en la App Store o en Google Play. Cada valoración ayuda a que más personas lo descubran.",
@@ -518,14 +531,16 @@
       mixer_body: "Susun soal pilihan ganda dari bank soal yang dibuat di Word. Dari satu kumpulan soal, ExamMixer membuat beberapa kode soal sekaligus (mengacak urutan soal dan pilihan agar tidak mudah dicontek), lalu mengekspornya ke Word/PDF beserta kunci jawaban yang <strong>langsung dapat dipakai di ExamScan</strong> untuk penilaian otomatis.",
       mixer_btn: "Unduh ExamMixer untuk Windows",
       mixer_btn_mac: "Unduh ExamMixer untuk macOS",
-      insight_sub: "Windows · macOS · Gratis",
+      insight_sub: "iPhone / iPad · Windows · macOS · Gratis",
       insight_body: "Lalu setelah dinilai? ExamInsight membaca file hasil dari ExamScan dan menunjukkan sejauh mana kelas benar-benar menguasai materi: nilai rata-rata, tingkat kelulusan, distribusi nilai, dan yang terpenting <strong>soal mana yang paling banyak dijawab salah</strong>. Ekspor laporan ke Excel atau PDF hanya dengan satu klik.",
       insight_btn: "Unduh ExamInsight untuk Windows",
       insight_btn_mac: "Unduh ExamInsight untuk macOS",
-      sheet_sub: "Windows · macOS · Gratis",
+      insight_btn_ios: "Unduh ExamInsight di App Store",
+      sheet_sub: "iPhone / iPad · Windows · macOS · Gratis",
       sheet_body: "Belum punya lembar jawaban untuk dinilai? ExamSheet yang menggambarnya. Pilih berapa baris data peserta, berapa digit nomor induk dan kode soal, berapa pertanyaan dan pilihan jawaban, lalu gabungkan menjadi <strong>lembar yang langsung bisa dinilai ExamScan</strong>. Ekspor ke PNG, PDF, Word, atau cetak langsung.",
       sheet_btn: "Unduh ExamSheet untuk Windows",
       sheet_btn_mac: "Unduh ExamSheet untuk macOS",
+      sheet_btn_ios: "Unduh ExamSheet di App Store",
       thanks_title: "Terima kasih sudah berkunjung",
       thanks_body: "Terima kasih telah mengunjungi situs kami dan menaruh perhatian pada program ini. Hal itu sangat berarti bagi kami dan mendorong kami untuk terus menyempurnakannya serta membuat alat yang bermanfaat bagi semua orang.",
       thanks_rate: "Jika program ini bermanfaat, berilah ExamScan 5 bintang di App Store atau Google Play. Setiap ulasan membantu lebih banyak orang menemukannya.",
