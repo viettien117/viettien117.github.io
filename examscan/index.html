@@ -209,6 +209,17 @@
   @media (max-width:560px) {
     .companion { flex-direction:column; align-items:center; text-align:center; }
   }
+
+  /* ---- Gop y + binh chon ngon ngu (user yeu cau 02/11/2026) ----
+     Hai the cung khuon .card o dau trang, luon HAI cot (khong len 4 cot o man rong
+     nhu .grid goc), mot cot o man hep. Doan chu flex:1 de hai nut thang hang day the
+     du doan chu dai ngan khac nhau. Ca hai nut cung mo MOT Google Form. */
+  .grid.feedback { grid-template-columns:repeat(2,1fr); margin-top:0; }
+  @media (max-width:560px) { .grid.feedback { grid-template-columns:1fr; } }
+  .grid.feedback .card { padding:24px 20px; }
+  .grid.feedback .card p.desc {
+    flex:1 1 auto; margin:6px 0 18px; font-size:14.5px; color:var(--muted);
+  }
 </style>
 </head>
 <body>
@@ -381,6 +392,28 @@
       </div>
     </div>
 
+    <hr class="divider">
+
+    <!-- Gop y + binh chon ngon ngu: ca hai mo cung Google Form
+         https://forms.gle/3mycXG1xvvhDfgiT7 (4 cau: app, gop y, ngon ngu, email — deu
+         khong bat buoc, khong bat dang nhap). Moc 100 phieu ghi ca trong loi cam on
+         cua Form — doi moc thi sua CA HAI noi. -->
+    <p class="section-label" data-i18n="fb_label">Góp ý &amp; ngôn ngữ</p>
+    <div class="grid feedback">
+      <div class="card">
+        <div class="platform" aria-hidden="true">💬</div>
+        <h2 data-i18n="fb_title">Góp ý cho chương trình</h2>
+        <p class="desc" data-i18n="fb_body">Bạn muốn có thêm tính năng, gặp lỗi, hay thấy chỗ nào chưa tiện? Hãy cho chúng tôi biết — mỗi góp ý đều được đọc và cân nhắc cho các bản cập nhật sau.</p>
+        <a class="btn" href="https://forms.gle/3mycXG1xvvhDfgiT7" target="_blank" rel="noopener" data-i18n="fb_btn">Gửi góp ý</a>
+      </div>
+      <div class="card">
+        <div class="platform" aria-hidden="true">🗳️</div>
+        <h2 data-i18n="lang_title">Bình chọn ngôn ngữ</h2>
+        <p class="desc" data-i18n="lang_body">Các ứng dụng hiện có 5 ngôn ngữ: Tiếng Việt, English, Português, Español và Bahasa Indonesia. Bạn muốn dùng ngôn ngữ khác? Hãy bình chọn — ngôn ngữ nào đạt 100 phiếu sẽ được ưu tiên thêm vào các ứng dụng.</p>
+        <a class="btn" href="https://forms.gle/3mycXG1xvvhDfgiT7" target="_blank" rel="noopener" data-i18n="lang_btn">Bình chọn ngay</a>
+      </div>
+    </div>
+
     <!-- Loi cam on + xin danh gia 5 sao, dat cuoi trang sau khi nguoi doc da xem
          xong phan tai. Chi ExamScan moi co cho danh gia: ExamMixer va ExamInsight
          phat hanh qua GitHub, khong co sao de cham - vi vay cau chu chi nhac
@@ -444,6 +477,13 @@
       thanks_rate_ios: "Đánh giá trên App Store",
       thanks_rate_android: "Đánh giá trên Google Play",
       thanks_sign: "Chân thành cảm ơn!",
+      fb_label: "Góp ý & ngôn ngữ",
+      fb_title: "Góp ý cho chương trình",
+      fb_body: "Bạn muốn có thêm tính năng, gặp lỗi, hay thấy chỗ nào chưa tiện? Hãy cho chúng tôi biết — mỗi góp ý đều được đọc và cân nhắc cho các bản cập nhật sau.",
+      fb_btn: "Gửi góp ý",
+      lang_title: "Bình chọn ngôn ngữ",
+      lang_body: "Các ứng dụng hiện có 5 ngôn ngữ: Tiếng Việt, English, Português, Español và Bahasa Indonesia. Bạn muốn dùng ngôn ngữ khác? Hãy bình chọn — ngôn ngữ nào đạt 100 phiếu sẽ được ưu tiên thêm vào các ứng dụng.",
+      lang_btn: "Bình chọn ngay",
       privacy: "Chính sách quyền riêng tư"
     },
     en: {
@@ -478,6 +518,13 @@
       thanks_rate_ios: "Rate on the App Store",
       thanks_rate_android: "Rate on Google Play",
       thanks_sign: "Thank you sincerely!",
+      fb_label: "Feedback & languages",
+      fb_title: "Share your feedback",
+      fb_body: "Missing a feature, hit a bug, or found something awkward? Let us know — every message is read and considered for future updates.",
+      fb_btn: "Send feedback",
+      lang_title: "Vote for a language",
+      lang_body: "The apps currently come in 5 languages: Tiếng Việt, English, Português, Español and Bahasa Indonesia. Want another one? Cast your vote — languages reaching 100 votes will be prioritized for the apps.",
+      lang_btn: "Vote now",
       privacy: "Privacy policy"
     },
     pt: {
@@ -512,6 +559,13 @@
       thanks_rate_ios: "Avaliar na App Store",
       thanks_rate_android: "Avaliar no Google Play",
       thanks_sign: "Muito obrigado!",
+      fb_label: "Sugestões e idiomas",
+      fb_title: "Envie sua sugestão",
+      fb_body: "Sentiu falta de um recurso, encontrou um erro ou algo pouco prático? Conte para nós — cada mensagem é lida e considerada nas próximas atualizações.",
+      fb_btn: "Enviar sugestão",
+      lang_title: "Vote em um idioma",
+      lang_body: "Os apps estão disponíveis em 5 idiomas: Tiếng Việt, English, Português, Español e Bahasa Indonesia. Quer outro? Vote — os idiomas que alcançarem 100 votos terão prioridade nos apps.",
+      lang_btn: "Votar agora",
       privacy: "Política de privacidade"
     },
     es: {
@@ -546,6 +600,13 @@
       thanks_rate_ios: "Valorar en la App Store",
       thanks_rate_android: "Valorar en Google Play",
       thanks_sign: "¡Muchas gracias!",
+      fb_label: "Sugerencias e idiomas",
+      fb_title: "Envía tu sugerencia",
+      fb_body: "¿Te falta una función, encontraste un error o algo poco práctico? Cuéntanos: leemos cada mensaje y lo tenemos en cuenta para las próximas actualizaciones.",
+      fb_btn: "Enviar sugerencia",
+      lang_title: "Vota por un idioma",
+      lang_body: "Las apps están disponibles en 5 idiomas: Tiếng Việt, English, Português, Español y Bahasa Indonesia. ¿Quieres otro? Vota: los idiomas que lleguen a 100 votos tendrán prioridad en las apps.",
+      lang_btn: "Votar ahora",
       privacy: "Política de privacidad"
     },
     id: {
@@ -580,6 +641,13 @@
       thanks_rate_ios: "Beri ulasan di App Store",
       thanks_rate_android: "Beri ulasan di Google Play",
       thanks_sign: "Terima kasih banyak!",
+      fb_label: "Masukan & bahasa",
+      fb_title: "Beri masukan",
+      fb_body: "Ada fitur yang kurang, menemukan bug, atau sesuatu yang kurang praktis? Beri tahu kami — setiap masukan dibaca dan dipertimbangkan untuk pembaruan berikutnya.",
+      fb_btn: "Kirim masukan",
+      lang_title: "Voting bahasa",
+      lang_body: "Aplikasi saat ini tersedia dalam 5 bahasa: Tiếng Việt, English, Português, Español, dan Bahasa Indonesia. Ingin bahasa lain? Berikan suara — bahasa yang mencapai 100 suara akan diprioritaskan di aplikasi.",
+      lang_btn: "Beri suara",
       privacy: "Kebijakan privasi"
     }
   };
