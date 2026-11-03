@@ -220,6 +220,40 @@
   .grid.feedback .card p.desc {
     flex:1 1 auto; margin:6px 0 18px; font-size:14.5px; color:var(--muted);
   }
+
+  /* ---- Phieu tra loi in san (user yeu cau 03/11/2026) ----
+     Cung khuon .companion; icon la emoji tren nen xanh ExamScan (khong co logo
+     rieng). Ba nut PDF LUON mot hang ba cot (auto-fit tung xep 2+1 tren dien thoai,
+     trong lech); chu dai nhu "20 questions" tu xuong dong BEN TRONG nut. Hai nut phu (ZIP,
+     Excel) kieu vien mo nhu nut danh gia, de khong lan at ba nut PDF chinh. */
+  /* Mau rieng cho the nay, SANG hon xanh ExamScan (user chon kieu A 03/11/2026). */
+  .companion.tpl { --tpl-ic1:#7ee8a8; --tpl-ic2:#2fbf71; --tpl-btn:#2fbf71; --tpl-btn-h:#27a862; --tpl-fg:#fff; --tpl-bd:transparent; }
+   (prefers-color-scheme: dark) { .companion.tpl { --tpl-ic1:#7ee8a8; --tpl-ic2:#2ecc71; --tpl-btn:#2ecc71; --tpl-btn-h:#4ade80; --tpl-fg:#0b1220; } }
+  .companion.tpl .icon {
+    display:flex; align-items:center; justify-content:center; font-size:30px;
+    background:linear-gradient(135deg, var(--tpl-ic1), var(--tpl-ic2));
+    box-shadow:0 8px 20px rgba(31,157,85,.22);
+  }
+  .companion.tpl .tplrow > a.btn {
+    background:var(--tpl-btn); color:var(--tpl-fg); border:1px solid var(--tpl-bd);
+  }
+  .companion.tpl .tplrow > a.btn:hover { background:var(--tpl-btn-h); }
+  .companion .tpl-label { margin:0 0 8px; font-size:14px; font-weight:600; }
+  .tplrow {
+    display:grid; gap:10px; max-width:520px;
+    grid-template-columns:repeat(3,1fr);
+  }
+  .tplrow > a {
+    display:flex; flex-wrap:wrap; align-items:center; justify-content:center;
+    column-gap:5px; line-height:1.25; min-height:46px; padding:8px 6px;
+  }
+  .btnrow.tplmore { margin-top:12px; }
+  .btnrow.tplmore > a { min-height:42px; }
+  .companion .tpl-note { margin:12px 0 0; font-size:13px; color:var(--muted); }
+  .nw { white-space:nowrap; }
+  @media (max-width:560px) {
+    .tplrow, .btnrow.tplmore { margin-left:auto; margin-right:auto; width:100%; }
+  }
 </style>
 </head>
 <body>
@@ -392,6 +426,36 @@
       </div>
     </div>
 
+    <!-- Phieu tra loi in san (user yeu cau 03/11/2026): link THANG toi tung file cua
+         release "templates" (repo ExamScan_AnswerSheetTemplates), KHONG link trang
+         release — trang do tieng Anh va co them hai file "Source code" GitHub tu sinh,
+         giao vien de bam nham. Cac ung dung cung tro toi dung nhung ten file nay ->
+         dung lai bo phieu thi GIU NGUYEN TEN. Doi dung luong ZIP thi sua "116 MB"
+         trong tpl_zip ca 5 ngon ngu. -->
+    <div class="companion tpl">
+      <div class="icon" aria-hidden="true">📄</div>
+      <div class="body">
+        <h2 data-i18n="tpl_title">Phiếu trả lời in sẵn</h2>
+        <p class="sub" data-i18n="tpl_sub">Khổ A4 · Miễn phí</p>
+        <p data-i18n-html="tpl_body">
+          Muốn thử ExamScan ngay? Tải phiếu in sẵn khổ A4 (mã số sinh viên 8 chữ số,
+          mã đề 3 chữ số, 4 phương án <span class="nw">A–D</span>), in ra và phát cho học sinh. Cần phiếu khác
+          cỡ hoặc bố cục riêng thì dùng <strong>ExamSheet</strong> ở trên.
+        </p>
+        <p class="tpl-label" data-i18n="tpl_pdf">Tải phiếu PDF:</p>
+        <div class="tplrow">
+          <a class="btn" href="https://github.com/viettien117/ExamScan_AnswerSheetTemplates/releases/download/templates/AnswerSheetTemplate_SID8_TC3_Q20A4.pdf" target="_blank" rel="noopener">20 <span data-i18n="tpl_q">câu</span></a>
+          <a class="btn" href="https://github.com/viettien117/ExamScan_AnswerSheetTemplates/releases/download/templates/AnswerSheetTemplate_SID8_TC3_Q40A4.pdf" target="_blank" rel="noopener">40 <span data-i18n="tpl_q">câu</span></a>
+          <a class="btn" href="https://github.com/viettien117/ExamScan_AnswerSheetTemplates/releases/download/templates/AnswerSheetTemplate_SID8_TC3_Q60A4.pdf" target="_blank" rel="noopener">60 <span data-i18n="tpl_q">câu</span></a>
+        </div>
+        <div class="btnrow tplmore">
+          <a class="btn-rate" href="https://github.com/viettien117/ExamScan_AnswerSheetTemplates/releases/download/templates/SamplesAndTemplates.zip" rel="noopener" data-i18n="tpl_zip">Trọn bộ (ZIP · 116 MB)</a>
+          <a class="btn-rate" href="https://github.com/viettien117/ExamScan_AnswerSheetTemplates/releases/download/templates/AnswerKey-Template.xlsx" rel="noopener" data-i18n="tpl_key">Mẫu file đáp án (Excel)</a>
+        </div>
+        <p class="tpl-note" data-i18n="tpl_note">3 phiếu PDF ghi nhãn tiếng Anh. Bộ ZIP có phiếu 10–60 câu bằng cả 5 ngôn ngữ (PNG, PDF, Word), kèm ảnh phiếu đã tô và đáp án để chấm thử.</p>
+      </div>
+    </div>
+
     <hr class="divider">
 
     <!-- Gop y + binh chon ngon ngu: ca hai mo cung Google Form
@@ -484,6 +548,14 @@
       lang_title: "Bình chọn ngôn ngữ",
       lang_body: "Các ứng dụng hiện có 5 ngôn ngữ: Tiếng Việt, English, Português, Español và Bahasa Indonesia. Bạn muốn dùng ngôn ngữ khác? Hãy bình chọn — ngôn ngữ nào đạt 100 phiếu sẽ được ưu tiên thêm vào các ứng dụng.",
       lang_btn: "Bình chọn ngay",
+      tpl_title: "Phiếu trả lời in sẵn",
+      tpl_sub: "Khổ A4 · Miễn phí",
+      tpl_body: "Muốn thử ExamScan ngay? Tải phiếu in sẵn khổ A4 (mã số sinh viên 8 chữ số, mã đề 3 chữ số, 4 phương án <span class=\"nw\">A–D</span>), in ra và phát cho học sinh. Cần phiếu khác cỡ hoặc bố cục riêng thì dùng <strong>ExamSheet</strong> ở trên.",
+      tpl_pdf: "Tải phiếu PDF:",
+      tpl_q: "câu",
+      tpl_zip: "Trọn bộ (ZIP · 116 MB)",
+      tpl_key: "Mẫu file đáp án (Excel)",
+      tpl_note: "3 phiếu PDF ghi nhãn tiếng Anh. Bộ ZIP có phiếu 10–60 câu bằng cả 5 ngôn ngữ (PNG, PDF, Word), kèm ảnh phiếu đã tô và đáp án để chấm thử.",
       privacy: "Chính sách quyền riêng tư"
     },
     en: {
@@ -525,6 +597,14 @@
       lang_title: "Vote for a language",
       lang_body: "The apps currently come in 5 languages: Tiếng Việt, English, Português, Español and Bahasa Indonesia. Want another one? Cast your vote — languages reaching 100 votes will be prioritized for the apps.",
       lang_btn: "Vote now",
+      tpl_title: "Ready-to-print answer sheets",
+      tpl_sub: "A4 · Free",
+      tpl_body: "Want to try ExamScan right away? Download a ready-made A4 sheet (8-digit student ID, 3-digit test code, 4 options <span class=\"nw\">A–D</span>), print it and hand it out to your students. Need a different size or layout? Use <strong>ExamSheet</strong> above.",
+      tpl_pdf: "Download a PDF sheet:",
+      tpl_q: "questions",
+      tpl_zip: "Full set (ZIP · 116 MB)",
+      tpl_key: "Answer key template (Excel)",
+      tpl_note: "The 3 PDF sheets are labeled in English. The ZIP holds 10–60-question sheets in all 5 languages (PNG, PDF, Word), plus photos of filled-in sheets and answer keys for a test run.",
       privacy: "Privacy policy"
     },
     pt: {
@@ -566,6 +646,14 @@
       lang_title: "Vote em um idioma",
       lang_body: "Os apps estão disponíveis em 5 idiomas: Tiếng Việt, English, Português, Español e Bahasa Indonesia. Quer outro? Vote — os idiomas que alcançarem 100 votos terão prioridade nos apps.",
       lang_btn: "Votar agora",
+      tpl_title: "Folhas de respostas prontas para imprimir",
+      tpl_sub: "A4 · Grátis",
+      tpl_body: "Quer experimentar o ExamScan agora? Baixe uma folha A4 pronta (matrícula de 8 dígitos, código da prova de 3 dígitos, 4 alternativas <span class=\"nw\">A–D</span>), imprima e entregue aos alunos. Precisa de outro tamanho ou layout? Use o <strong>ExamSheet</strong> acima.",
+      tpl_pdf: "Baixar folha em PDF:",
+      tpl_q: "questões",
+      tpl_zip: "Pacote completo (ZIP · 116 MB)",
+      tpl_key: "Modelo de gabarito (Excel)",
+      tpl_note: "As 3 folhas em PDF estão em inglês. O ZIP traz folhas de 10 a 60 questões nos 5 idiomas (PNG, PDF, Word), além de fotos de folhas preenchidas e gabaritos para um teste.",
       privacy: "Política de privacidade"
     },
     es: {
@@ -607,6 +695,14 @@
       lang_title: "Vota por un idioma",
       lang_body: "Las apps están disponibles en 5 idiomas: Tiếng Việt, English, Português, Español y Bahasa Indonesia. ¿Quieres otro? Vota: los idiomas que lleguen a 100 votos tendrán prioridad en las apps.",
       lang_btn: "Votar ahora",
+      tpl_title: "Hojas de respuestas listas para imprimir",
+      tpl_sub: "A4 · Gratis",
+      tpl_body: "¿Quieres probar ExamScan ahora mismo? Descarga una hoja A4 lista (matrícula de 8 dígitos, código de examen de 3 dígitos, 4 opciones <span class=\"nw\">A–D</span>), imprímela y repártela a tus alumnos. ¿Necesitas otro tamaño o diseño? Usa <strong>ExamSheet</strong> arriba.",
+      tpl_pdf: "Descargar hoja en PDF:",
+      tpl_q: "preguntas",
+      tpl_zip: "Paquete completo (ZIP · 116 MB)",
+      tpl_key: "Plantilla de respuestas (Excel)",
+      tpl_note: "Las 3 hojas en PDF están en inglés. El ZIP incluye hojas de 10 a 60 preguntas en los 5 idiomas (PNG, PDF, Word), además de fotos de hojas rellenadas y claves de respuestas para una prueba.",
       privacy: "Política de privacidad"
     },
     id: {
@@ -648,6 +744,14 @@
       lang_title: "Voting bahasa",
       lang_body: "Aplikasi saat ini tersedia dalam 5 bahasa: Tiếng Việt, English, Português, Español, dan Bahasa Indonesia. Ingin bahasa lain? Berikan suara — bahasa yang mencapai 100 suara akan diprioritaskan di aplikasi.",
       lang_btn: "Beri suara",
+      tpl_title: "Lembar jawaban siap cetak",
+      tpl_sub: "A4 · Gratis",
+      tpl_body: "Ingin mencoba ExamScan sekarang? Unduh lembar A4 siap pakai (nomor induk 8 digit, kode soal 3 digit, 4 pilihan <span class=\"nw\">A–D</span>), cetak, lalu bagikan ke siswa. Perlu ukuran atau tata letak lain? Gunakan <strong>ExamSheet</strong> di atas.",
+      tpl_pdf: "Unduh lembar PDF:",
+      tpl_q: "soal",
+      tpl_zip: "Paket lengkap (ZIP · 116 MB)",
+      tpl_key: "Templat kunci jawaban (Excel)",
+      tpl_note: "3 lembar PDF berlabel bahasa Inggris. File ZIP berisi lembar 10–60 soal dalam 5 bahasa (PNG, PDF, Word), ditambah foto lembar terisi dan kunci jawaban untuk uji coba.",
       privacy: "Kebijakan privasi"
     }
   };
