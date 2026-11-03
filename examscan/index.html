@@ -14,6 +14,7 @@
     --orange:#d97706; --orange-d:#b45309;
     --purple:#7c3aed; --purple-d:#5b21b6;
     --cyan:#0e7490; --cyan-d:#155e75;
+    --blue:#2563eb; --rose:#db2777; --amber:#ca8a04;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -25,6 +26,7 @@
          (#22d3ee) chỉ đạt khoảng 1,9:1, đọc không nổi. #0891b2 đạt ~3,5:1
          mà vẫn ra rõ màu cyan trên nền tối. */
       --cyan:#0891b2; --cyan-d:#0e7490;
+      --blue:#60a5fa; --rose:#f472b6; --amber:#facc15;
     }
   }
   * { box-sizing:border-box; }
@@ -254,6 +256,33 @@
   @media (max-width:560px) {
     .tplrow, .btnrow.tplmore { margin-left:auto; margin-right:auto; width:100%; }
   }
+
+  /* ---- Mau nen rieng cho tung the (user yeu cau 03/11/2026) ----
+     Moi the khoac mot lop mau NHAT theo mau cua app / chuc nang (bang mau icon bo
+     Exam*: Scan xanh la, Mixer cam, Insight tim, Sheet cyan; Gop y xanh duong, Binh
+     chon hong, Loi cam on vang). color-mix tron mau nhan vao --card nen tu dung
+     cho ca che do sang lan toi; trinh duyet cu khong hieu color-mix thi giu dong
+     background ngay truoc no (nen trang nhu cu). The con chua QR ben trong the
+     cong cu GIU nen --card: QR can nen sach de quet, va noi len tren nen mau. */
+  .platforms > .card, .companion, .grid.feedback .card, .thanks {
+    background:var(--card);
+    background:color-mix(in srgb, var(--accent) 8%, var(--card));
+    border-color:color-mix(in srgb, var(--accent) 30%, var(--border));
+  }
+  .platforms > .card, .companion.tpl { --accent:var(--green); }
+  .companion.mixer   { --accent:var(--orange); }
+  .companion.insight { --accent:var(--purple); }
+  .companion.sheet   { --accent:var(--cyan); }
+  .grid.feedback .card.fb   { --accent:var(--blue); }
+  .grid.feedback .card.vote { --accent:var(--rose); }
+  .thanks { --accent:var(--amber); }
+  .companion .grid.mini .card { background:var(--card); }
+  /* Nut cua hai the Gop y / Binh chon theo mau the. Mau dac CO DINH (khong doi theo
+     che do toi): ban toi cua --blue/--rose sang qua, chu trang tren do khong doc noi. */
+  .grid.feedback .card.fb .btn   { background:#2563eb; }
+  .grid.feedback .card.fb .btn:hover   { background:#1d4ed8; }
+  .grid.feedback .card.vote .btn { background:#db2777; }
+  .grid.feedback .card.vote .btn:hover { background:#be185d; }
 </style>
 </head>
 <body>
@@ -278,7 +307,7 @@
       <p class="tagline" data-i18n="tagline">Chấm bài trắc nghiệm trong vài giây bằng cách chụp ảnh.</p>
     </header>
 
-    <div class="grid">
+    <div class="grid platforms">
 
       <div class="card">
         <div class="platform">🍎</div>
@@ -464,13 +493,13 @@
          cua Form — doi moc thi sua CA HAI noi. -->
     <p class="section-label" data-i18n="fb_label">Góp ý &amp; ngôn ngữ</p>
     <div class="grid feedback">
-      <div class="card">
+      <div class="card fb">
         <div class="platform" aria-hidden="true">💬</div>
         <h2 data-i18n="fb_title">Góp ý cho chương trình</h2>
         <p class="desc" data-i18n="fb_body">Bạn muốn có thêm tính năng, gặp lỗi, hay thấy chỗ nào chưa tiện? Hãy cho chúng tôi biết — mỗi góp ý đều được đọc và cân nhắc cho các bản cập nhật sau.</p>
         <a class="btn" href="https://forms.gle/3mycXG1xvvhDfgiT7" target="_blank" rel="noopener" data-i18n="fb_btn">Gửi góp ý</a>
       </div>
-      <div class="card">
+      <div class="card vote">
         <div class="platform" aria-hidden="true">🗳️</div>
         <h2 data-i18n="lang_title">Bình chọn ngôn ngữ</h2>
         <p class="desc" data-i18n="lang_body">Các ứng dụng hiện có 5 ngôn ngữ: Tiếng Việt, English, Português, Español và Bahasa Indonesia. Bạn muốn dùng ngôn ngữ khác? Hãy bình chọn — ngôn ngữ nào đạt 100 phiếu sẽ được ưu tiên thêm vào các ứng dụng.</p>
