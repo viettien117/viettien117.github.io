@@ -163,6 +163,19 @@
        thay vi 3 + 1 le loi (ExamSheet/ExamInsight co them Android 10/11/2026). */
     grid-template-columns:repeat(auto-fit, minmax(min(max(210px, calc(50% - 8px)), 100%), 1fr));
   }
+  /* Man rong (>= 980px, cung nguong voi luoi ExamScan o dau trang): moi the nen tang
+     cua mot app nam tren MOT hang (user yeu cau 10/11/2026). Than the chi rong ~788px
+     (bi bieu tuong 60px + khe 22px chiem cho) - 4 cot thi moi the con ~188px, khong du
+     cho QR 168px. Nen keo luoi lan sang trai 82px, xuong duoi bieu tuong: luoi rong
+     ~870px, 4 cot cach 16px -> moi the ~205px, bot padding 14px con ~177px >= 168px.
+     grid-auto-flow:column + 1fr: bao nhieu the cung mot hang, rong bang nhau
+     (ExamMixer 2 the, ExamInsight/ExamSheet 4 the). */
+  @media (min-width:980px) {
+    .companion .grid.mini {
+      margin-left:-82px;
+      grid-template-columns:none; grid-auto-flow:column; grid-auto-columns:1fr;
+    }
+  }
   .companion .card { padding:22px 14px; }
   .companion .card h2 { font-size:19px; margin:6px 0 2px; }
   .companion .card .sub { margin:0 0 16px; font-size:13px; }
@@ -207,10 +220,28 @@
      margin:auto hai ben moi la thu can giua — justify-content khong co tac dung
      khi cot la 1fr, vi luc do cot da chiem tron be ngang roi. */
   /* Ba app co ban tren cua hang (ExamMixer chi co ban may tinh, khong co sao de cham):
-     moi app mot hang nut, ten app nho o tren. */
-  .thanks .rate-app { margin:18px 0 0; font-size:14px; font-weight:600; color:var(--text); }
-  .thanks .btnrow { max-width:520px; margin:8px auto 0; }
-  .thanks .btnrow + .thanks-sign { margin-top:20px; }
+     moi app mot THE con mang mau cua app (bang mau icon: Scan xanh la, Sheet cyan,
+     Insight tim) de nguoi dung khong bam nham app - user yeu cau 10/11/2026.
+     Mot cot tren dien thoai; tu 700px ba the mot hang (khong dung auto-fit: o be
+     ngang vua du hai the thi the thu ba bi le mot minh). Nen the con tron 10% mau
+     app vao --card nen tu dung cho ca che do toi. */
+  .rate-grid { display:grid; gap:14px; grid-template-columns:1fr; margin:18px 0 20px; text-align:center; }
+  @media (min-width:700px) { .rate-grid { grid-template-columns:repeat(3,1fr); } }
+  .rate-card {
+    display:flex; flex-direction:column; gap:8px; padding:16px 14px; border-radius:14px;
+    background:var(--card); border:1px solid var(--border);
+    background:color-mix(in srgb, var(--app) 10%, var(--card));
+    border-color:color-mix(in srgb, var(--app) 40%, var(--border));
+  }
+  .rate-card.scan    { --app:var(--green); }
+  .rate-card.sheet   { --app:var(--cyan); }
+  .rate-card.insight { --app:var(--purple); }
+  .thanks .rate-card .rate-app { margin:0 0 4px; font-size:16px; font-weight:700; color:var(--app); }
+  .rate-card .btn-rate {
+    display:flex; align-items:center; justify-content:center; min-height:42px;
+    background:var(--card); border-color:color-mix(in srgb, var(--app) 35%, var(--border));
+  }
+  .rate-card .btn-rate:hover { border-color:var(--app); color:var(--app); }
   .thanks .btnrow > a { min-height:42px; }
   /* Cau ket dung the rieng de khong bi ngat dong giua chung. */
   .thanks .thanks-sign { color:var(--text); font-weight:600; }
@@ -541,20 +572,22 @@
            API danh gia nhung trong ung dung Android), nen nut nay mo trang ung dung
            - hang sao nam ngay dau trang. Dung link https chu khong dung market://
            de may tinh cung bam duoc; may Android tu chuyen sang ung dung Play Store. -->
-      <p class="rate-app">ExamScan</p>
-      <div class="btnrow" role="group" aria-label="ExamScan">
-        <a class="btn-rate" href="https://apps.apple.com/app/id6782332992?action=write-review" target="_blank" rel="noopener" data-i18n="thanks_rate_ios">Đánh giá trên App Store</a>
-        <a class="btn-rate" href="https://play.google.com/store/apps/details?id=vn.examscan" target="_blank" rel="noopener" data-i18n="thanks_rate_android">Đánh giá trên Google Play</a>
-      </div>
-      <p class="rate-app">ExamSheet</p>
-      <div class="btnrow" role="group" aria-label="ExamSheet">
-        <a class="btn-rate" href="https://apps.apple.com/app/id6816303954?action=write-review" target="_blank" rel="noopener" data-i18n="thanks_rate_ios">Đánh giá trên App Store</a>
-        <a class="btn-rate" href="https://play.google.com/store/apps/details?id=vn.ExamSheet" target="_blank" rel="noopener" data-i18n="thanks_rate_android">Đánh giá trên Google Play</a>
-      </div>
-      <p class="rate-app">ExamInsight</p>
-      <div class="btnrow" role="group" aria-label="ExamInsight">
-        <a class="btn-rate" href="https://apps.apple.com/app/id6816304403?action=write-review" target="_blank" rel="noopener" data-i18n="thanks_rate_ios">Đánh giá trên App Store</a>
-        <a class="btn-rate" href="https://play.google.com/store/apps/details?id=vn.examinsight" target="_blank" rel="noopener" data-i18n="thanks_rate_android">Đánh giá trên Google Play</a>
+      <div class="rate-grid">
+        <div class="rate-card scan" role="group" aria-label="ExamScan">
+          <p class="rate-app">ExamScan</p>
+          <a class="btn-rate" href="https://apps.apple.com/app/id6782332992?action=write-review" target="_blank" rel="noopener" data-i18n="thanks_rate_ios">Đánh giá trên App Store</a>
+          <a class="btn-rate" href="https://play.google.com/store/apps/details?id=vn.examscan" target="_blank" rel="noopener" data-i18n="thanks_rate_android">Đánh giá trên Google Play</a>
+        </div>
+        <div class="rate-card sheet" role="group" aria-label="ExamSheet">
+          <p class="rate-app">ExamSheet</p>
+          <a class="btn-rate" href="https://apps.apple.com/app/id6816303954?action=write-review" target="_blank" rel="noopener" data-i18n="thanks_rate_ios">Đánh giá trên App Store</a>
+          <a class="btn-rate" href="https://play.google.com/store/apps/details?id=vn.ExamSheet" target="_blank" rel="noopener" data-i18n="thanks_rate_android">Đánh giá trên Google Play</a>
+        </div>
+        <div class="rate-card insight" role="group" aria-label="ExamInsight">
+          <p class="rate-app">ExamInsight</p>
+          <a class="btn-rate" href="https://apps.apple.com/app/id6816304403?action=write-review" target="_blank" rel="noopener" data-i18n="thanks_rate_ios">Đánh giá trên App Store</a>
+          <a class="btn-rate" href="https://play.google.com/store/apps/details?id=vn.examinsight" target="_blank" rel="noopener" data-i18n="thanks_rate_android">Đánh giá trên Google Play</a>
+        </div>
       </div>
       <p class="thanks-sign" data-i18n="thanks_sign">Chân thành cảm ơn!</p>
     </div>
