@@ -90,12 +90,25 @@
   .btn.ghost { background:transparent; color:var(--accent-d); }
   @media (prefers-color-scheme: dark) { .btn.ghost { color:var(--accent); } }
   .btn.ghost:hover { background:var(--accent); color:#fff; }
+  /* Nut Windows/macOS co bieu tuong SVG ve net (KHONG dung logo Windows/Apple - can giay phep). */
+  .btn { display:inline-flex; align-items:center; justify-content:center; gap:7px; }
+  .btn svg { width:18px; height:18px; flex:none; }
+  /* Huy hieu CHINH THUC App Store / Google Play (khong to mau, khong sua chu). Cao bang nhau. */
+  .store-badge { flex:1 1 calc(50% - 4px); display:flex; align-items:center; justify-content:center; min-height:44px; border-radius:10px; }
+  .store-badge img { height:42px; width:auto; display:block; }
+  .store-badge:hover img { filter:brightness(1.25); }
+  .store-badge:focus-visible { outline:2px solid var(--accent); outline-offset:3px; }
 
   footer { margin-top:40px; text-align:center; color:var(--muted); font-size:13px; }
   footer a { color:var(--muted); }
+  footer .tm { max-width:640px; margin:10px auto 0; font-size:11px; line-height:1.45; opacity:.85; }
 </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+  <symbol id="pf-pc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="3.5" width="19" height="13" rx="2"/><path d="M12 16.5v4M8 20.5h8"/></symbol>
+  <symbol id="pf-laptop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="4.5" width="15" height="10.5" rx="1.6"/><path d="M3.7 17h16.6l1.2 2.5H2.5z"/></symbol>
+</defs></svg>
 <div class="wrap">
 
   <div class="langbar">
@@ -129,10 +142,10 @@
       </div>
       <p class="desc" data-i18n-html="scan_body">Chụp ảnh phiếu trả lời là chấm xong. ExamScan nhận dạng ô tô trên phiếu và cho điểm ngay trong vài giây, không cần máy quét chuyên dụng. Kết quả lưu thành file để nhập điểm, và <strong>mở được bằng ExamInsight</strong> để thống kê cả lớp.</p>
       <div class="btns">
-        <a class="btn" href="https://apps.apple.com/app/id6782332992" target="_blank" rel="noopener" data-i18n="btn_ios" data-i18n-aria="scan_btn_ios">Tải trên App Store</a>
-        <a class="btn" href="https://play.google.com/store/apps/details?id=vn.examscan" target="_blank" rel="noopener" data-i18n="btn_android" data-i18n-aria="scan_btn_android">Tải trên Google Play</a>
-        <a class="btn ghost" href="https://github.com/viettien117/ExamScan_Windows_updates/releases/latest" target="_blank" rel="noopener" data-i18n="btn_windows" data-i18n-aria="scan_btn">Tải cho Windows</a>
-        <a class="btn ghost" href="https://github.com/viettien117/ExamScan_macOS_updates/releases/latest" target="_blank" rel="noopener" data-i18n="btn_macos" data-i18n-aria="scan_btn_mac">Tải cho macOS</a>
+        <a class="store-badge" href="https://apps.apple.com/app/id6782332992" target="_blank" rel="noopener" aria-label="Tải trên App Store" data-i18n-aria="scan_btn_ios"><img data-badge src="badges/appstore-vi.svg" alt="App Store" width="132" height="44"></a>
+        <a class="store-badge" href="https://play.google.com/store/apps/details?id=vn.examscan" target="_blank" rel="noopener" aria-label="Tải trên Google Play" data-i18n-aria="scan_btn_android"><img data-badge src="badges/googleplay-vi.png" alt="Google Play" width="148" height="44"></a>
+        <a class="btn ghost" href="https://github.com/viettien117/ExamScan_Windows_updates/releases/latest" target="_blank" rel="noopener" data-i18n-aria="scan_btn"><svg aria-hidden="true"><use href="#pf-pc"/></svg><span data-i18n="btn_windows">Tải cho Windows</span></a>
+        <a class="btn ghost" href="https://github.com/viettien117/ExamScan_macOS_updates/releases/latest" target="_blank" rel="noopener" data-i18n-aria="scan_btn_mac"><svg aria-hidden="true"><use href="#pf-laptop"/></svg><span data-i18n="btn_macos">Tải cho macOS</span></a>
       </div>
     </article>
 
@@ -146,10 +159,10 @@
       </div>
       <p class="desc" data-i18n-html="sheet_body">Chưa có phiếu trả lời để chấm? ExamSheet vẽ ra phiếu đó.</p>
       <div class="btns">
-        <a class="btn" href="https://apps.apple.com/app/id6816303954" target="_blank" rel="noopener" data-i18n="btn_ios" data-i18n-aria="sheet_btn_ios">Tải trên App Store</a>
-        <a class="btn" href="https://play.google.com/store/apps/details?id=vn.ExamSheet" target="_blank" rel="noopener" data-i18n="btn_android" data-i18n-aria="sheet_btn_android">Tải trên Google Play</a>
-        <a class="btn ghost" href="https://github.com/viettien117/ExamSheet_Windows_updates/releases/latest" target="_blank" rel="noopener" data-i18n="btn_windows" data-i18n-aria="sheet_btn">Tải cho Windows</a>
-        <a class="btn ghost" href="https://github.com/viettien117/ExamSheet_macOS_updates/releases/latest" target="_blank" rel="noopener" data-i18n="btn_macos" data-i18n-aria="sheet_btn_mac">Tải cho macOS</a>
+        <a class="store-badge" href="https://apps.apple.com/app/id6816303954" target="_blank" rel="noopener" aria-label="Tải trên App Store" data-i18n-aria="sheet_btn_ios"><img data-badge src="badges/appstore-vi.svg" alt="App Store" width="132" height="44"></a>
+        <a class="store-badge" href="https://play.google.com/store/apps/details?id=vn.ExamSheet" target="_blank" rel="noopener" aria-label="Tải trên Google Play" data-i18n-aria="sheet_btn_android"><img data-badge src="badges/googleplay-vi.png" alt="Google Play" width="148" height="44"></a>
+        <a class="btn ghost" href="https://github.com/viettien117/ExamSheet_Windows_updates/releases/latest" target="_blank" rel="noopener" data-i18n-aria="sheet_btn"><svg aria-hidden="true"><use href="#pf-pc"/></svg><span data-i18n="btn_windows">Tải cho Windows</span></a>
+        <a class="btn ghost" href="https://github.com/viettien117/ExamSheet_macOS_updates/releases/latest" target="_blank" rel="noopener" data-i18n-aria="sheet_btn_mac"><svg aria-hidden="true"><use href="#pf-laptop"/></svg><span data-i18n="btn_macos">Tải cho macOS</span></a>
       </div>
     </article>
 
@@ -163,8 +176,8 @@
       </div>
       <p class="desc" data-i18n-html="mixer_body">Trộn đề thi trắc nghiệm từ ngân hàng câu hỏi soạn sẵn trong file Word.</p>
       <div class="btns">
-        <a class="btn" href="https://github.com/viettien117/ExamMixer_Windows_updates/releases/latest" target="_blank" rel="noopener" data-i18n="btn_windows" data-i18n-aria="mixer_btn">Tải cho Windows</a>
-        <a class="btn" href="https://github.com/viettien117/ExamMixer_macOS_updates/releases/latest" target="_blank" rel="noopener" data-i18n="btn_macos" data-i18n-aria="mixer_btn_mac">Tải cho macOS</a>
+        <a class="btn" href="https://github.com/viettien117/ExamMixer_Windows_updates/releases/latest" target="_blank" rel="noopener" data-i18n-aria="mixer_btn"><svg aria-hidden="true"><use href="#pf-pc"/></svg><span data-i18n="btn_windows">Tải cho Windows</span></a>
+        <a class="btn" href="https://github.com/viettien117/ExamMixer_macOS_updates/releases/latest" target="_blank" rel="noopener" data-i18n-aria="mixer_btn_mac"><svg aria-hidden="true"><use href="#pf-laptop"/></svg><span data-i18n="btn_macos">Tải cho macOS</span></a>
       </div>
     </article>
 
@@ -178,10 +191,10 @@
       </div>
       <p class="desc" data-i18n-html="insight_body">Chấm xong rồi thì sao? ExamInsight đọc file kết quả của ExamScan.</p>
       <div class="btns">
-        <a class="btn" href="https://apps.apple.com/app/id6816304403" target="_blank" rel="noopener" data-i18n="btn_ios" data-i18n-aria="insight_btn_ios">Tải trên App Store</a>
-        <a class="btn" href="https://play.google.com/store/apps/details?id=vn.examinsight" target="_blank" rel="noopener" data-i18n="btn_android" data-i18n-aria="insight_btn_android">Tải trên Google Play</a>
-        <a class="btn ghost" href="https://github.com/viettien117/ExamInsight_Windows_updates/releases/latest" target="_blank" rel="noopener" data-i18n="btn_windows" data-i18n-aria="insight_btn">Tải cho Windows</a>
-        <a class="btn ghost" href="https://github.com/viettien117/ExamInsight_macOS_updates/releases/latest" target="_blank" rel="noopener" data-i18n="btn_macos" data-i18n-aria="insight_btn_mac">Tải cho macOS</a>
+        <a class="store-badge" href="https://apps.apple.com/app/id6816304403" target="_blank" rel="noopener" aria-label="Tải trên App Store" data-i18n-aria="insight_btn_ios"><img data-badge src="badges/appstore-vi.svg" alt="App Store" width="132" height="44"></a>
+        <a class="store-badge" href="https://play.google.com/store/apps/details?id=vn.examinsight" target="_blank" rel="noopener" aria-label="Tải trên Google Play" data-i18n-aria="insight_btn_android"><img data-badge src="badges/googleplay-vi.png" alt="Google Play" width="148" height="44"></a>
+        <a class="btn ghost" href="https://github.com/viettien117/ExamInsight_Windows_updates/releases/latest" target="_blank" rel="noopener" data-i18n-aria="insight_btn"><svg aria-hidden="true"><use href="#pf-pc"/></svg><span data-i18n="btn_windows">Tải cho Windows</span></a>
+        <a class="btn ghost" href="https://github.com/viettien117/ExamInsight_macOS_updates/releases/latest" target="_blank" rel="noopener" data-i18n-aria="insight_btn_mac"><svg aria-hidden="true"><use href="#pf-laptop"/></svg><span data-i18n="btn_macos">Tải cho macOS</span></a>
       </div>
     </article>
 
@@ -190,6 +203,7 @@
   <footer>
     © 2026 RuBi · ExamScan · ExamMixer · ExamInsight · ExamSheet<br>
     <a href="examscan-privacy/" target="_blank" rel="noopener" data-i18n="privacy">Chính sách quyền riêng tư</a>
+    <p class="tm" data-i18n="tm">App Store là nhãn hiệu dịch vụ của Apple Inc. Google Play và biểu trưng Google Play là nhãn hiệu của Google LLC.</p>
   </footer>
 </div>
 
@@ -229,7 +243,8 @@
       insight_btn_mac: "Tải ExamInsight cho macOS",
       insight_btn_ios: "Tải ExamInsight trên App Store",
       insight_btn_android: "Tải ExamInsight trên Google Play",
-      privacy: "Chính sách quyền riêng tư"
+      privacy: "Chính sách quyền riêng tư",
+      tm: "App Store là nhãn hiệu dịch vụ của Apple Inc. Google Play và biểu trưng Google Play là nhãn hiệu của Google LLC."
     },
     en: {
       title: "RuBi — Free tools for multiple-choice exams",
@@ -262,7 +277,8 @@
       insight_btn_mac: "Download ExamInsight for macOS",
       insight_btn_ios: "Download ExamInsight on the App Store",
       insight_btn_android: "Get ExamInsight on Google Play",
-      privacy: "Privacy policy"
+      privacy: "Privacy policy",
+      tm: "App Store is a service mark of Apple Inc. Google Play and the Google Play logo are trademarks of Google LLC."
     },
     pt: {
       title: "RuBi — Ferramentas gratuitas para provas de múltipla escolha",
@@ -295,7 +311,8 @@
       insight_btn_mac: "Baixar o ExamInsight para macOS",
       insight_btn_ios: "Baixar o ExamInsight na App Store",
       insight_btn_android: "Baixar o ExamInsight no Google Play",
-      privacy: "Política de privacidade"
+      privacy: "Política de privacidade",
+      tm: "App Store é uma marca de serviço da Apple Inc. Google Play e o logotipo do Google Play são marcas comerciais da Google LLC."
     },
     es: {
       title: "RuBi — Herramientas gratuitas para exámenes de opción múltiple",
@@ -328,7 +345,8 @@
       insight_btn_mac: "Descargar ExamInsight para macOS",
       insight_btn_ios: "Descargar ExamInsight en la App Store",
       insight_btn_android: "Descargar ExamInsight en Google Play",
-      privacy: "Política de privacidad"
+      privacy: "Política de privacidad",
+      tm: "App Store es una marca de servicio de Apple Inc. Google Play y el logotipo de Google Play son marcas comerciales de Google LLC."
     },
     id: {
       title: "RuBi — Alat gratis untuk ujian pilihan ganda",
@@ -361,7 +379,8 @@
       insight_btn_mac: "Unduh ExamInsight untuk macOS",
       insight_btn_ios: "Unduh ExamInsight di App Store",
       insight_btn_android: "Unduh ExamInsight di Google Play",
-      privacy: "Kebijakan privasi"
+      privacy: "Kebijakan privasi",
+      tm: "App Store adalah merek layanan Apple Inc. Google Play dan logo Google Play adalah merek dagang Google LLC."
     }
   };
 
@@ -392,7 +411,11 @@
       var v = t[el.getAttribute("data-i18n-aria")];
       if (v != null) el.setAttribute("aria-label", v);
     });
-    select.value = lang;
+    // Huy hieu App Store / Google Play: moi ngon ngu mot file rieng trong badges/
+    // (huy hieu chinh thuc cua Apple/Google, KHONG duoc tu dich hay tu ve lai).
+    document.querySelectorAll("img[data-badge]").forEach(function (el) {
+      el.src = el.getAttribute("src").replace(/-(vi|en|id|pt|es)\.(svg|png)$/, "-" + lang + ".$2");
+    });    select.value = lang;
   }
 
   // Lần đầu vào trang thì đoán theo ngôn ngữ trình duyệt; sau đó nhớ lựa chọn.

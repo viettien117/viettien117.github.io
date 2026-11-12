@@ -76,6 +76,23 @@
   }
   .card:hover { transform:translateY(-3px); box-shadow:0 12px 28px rgba(0,0,0,.10); }
   .platform { font-size:38px; line-height:1; margin-bottom:6px; }
+  /* Bieu tuong nen tang: SVG ve net cung mot kieu, to mau theo app (--accent). Truoc
+     day la emoji, moi may/trinh duyet ve mot kieu nen trong lom chom (user 12/11/2026).
+     KHONG dung logo Apple / Windows: hai hang cam dung logo khi chua duoc cap phep.
+     Robot Android thi duoc (CC BY 3.0) - dong ghi cong nam o footer (khoa tm). */
+  .platform.pf {
+    width:56px; height:56px; border-radius:16px; display:flex; align-items:center; justify-content:center;
+    color:var(--accent, var(--green));
+    background:color-mix(in srgb, var(--accent, var(--green)) 14%, var(--card));
+  }
+  .platform.pf svg { width:32px; height:32px; }
+  /* Huy hieu CHINH THUC App Store / Google Play thay cho nut chu. Hai huy hieu cao
+     bang nhau (44px) theo huong dan cua Google; anh Google da cat bo vien trong suot.
+     Khong to mau, khong doi chu - Apple/Google cam sua huy hieu. */
+  .store-badge { display:flex; align-items:center; justify-content:center; width:100%; min-height:46px; border-radius:10px; }
+  .store-badge img { height:44px; width:auto; display:block; }
+  .store-badge:hover img { filter:brightness(1.25); }
+  .store-badge:focus-visible { outline:2px solid var(--accent, var(--green)); outline-offset:3px; }
   .card h2 { font-size:19px; margin:6px 0 2px; }
   .sub { color:var(--muted); font-size:13px; margin:0 0 16px; }
   .qr {
@@ -91,6 +108,7 @@
   .hint { text-align:center; color:var(--muted); font-size:13px; margin-top:26px; }
   footer { text-align:center; color:var(--muted); font-size:12px; margin-top:40px; }
   footer a { color:var(--green); }
+  footer .tm { max-width:640px; margin:10px auto 0; font-size:11px; line-height:1.45; opacity:.85; }
 
   /* ---- Nút chọn ngôn ngữ ---- */
   .langbar { display:flex; justify-content:flex-end; margin-bottom:12px; }
@@ -323,6 +341,12 @@
 </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+  <symbol id="pf-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="6.5" y="2.5" width="11" height="19" rx="2.6"/><path d="M10.6 5.3h2.8M10.8 18.6h2.4"/></symbol>
+  <symbol id="pf-android" viewBox="2.7 3.6 18.6 18.6" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 18a8.5 8.5 0 0 1 17 0z"/><path d="M7.8 10.7 6 7.7M16.2 10.7l1.8-3"/><circle cx="8.9" cy="14.5" r="1.05" fill="currentColor" stroke="none"/><circle cx="15.1" cy="14.5" r="1.05" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="pf-pc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="3.5" width="19" height="13" rx="2"/><path d="M12 16.5v4M8 20.5h8"/></symbol>
+  <symbol id="pf-laptop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="4.5" width="15" height="10.5" rx="1.6"/><path d="M3.7 17h16.6l1.2 2.5H2.5z"/></symbol>
+</defs></svg>
   <div class="wrap">
     <div class="langbar">
       <label class="langpick">
@@ -347,23 +371,23 @@
     <div class="grid platforms">
 
       <div class="card">
-        <div class="platform">🍎</div>
+        <div class="platform pf" aria-hidden="true"><svg><use href="#pf-phone"/></svg></div>
         <h2>iPhone / iPad</h2>
         <p class="sub">App Store</p>
         <img class="qr" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAQgAAAEIAQMAAACZOPi8AAAABlBMVEUPFyr///9JwCnAAAABF0lEQVR42u2ZwQ7DMAhD0f7/n5mUxMbbDr3vhU5TE+VSC2xwqp+i7gn2idrR529tzG6/6in+6UQJtAPFWlXPLhGPlRit3ND67GLxWBky4ODx6IoHjYeIdZdM904ULH9IXz4frL5YevdqF8oEkj/Uc6haWhSCrJf8/HKqFJQ/WnwhJi0x6noj1ovSQkmS7TxVb6WxYlMhQ6yXiglG3CpokHyayPgHxcOtqZkjt5n8MdCcSbfctBP7U9lBdoNCgpn96ddQO94QU1/crMdbU/FwK2oPNcHizrftjiw5lut/5LQr9xDur3eFy47FI0Qlb1+gfDr+uibckRn2fcNUyxjuYH/dVpkdRCZ/WF+kujYOi9x/3Pv9e+In3gD1OrKDz2nNAAAAAElFTkSuQmCC" alt="QR iPhone / iPad" width="150" height="150" loading="lazy">
-        <a class="btn" href="https://apps.apple.com/app/id6782332992" target="_blank" rel="noopener" data-i18n="btn_ios">Tải trên App Store</a>
+        <a class="store-badge" href="https://apps.apple.com/app/id6782332992" target="_blank" rel="noopener" aria-label="Tải trên App Store" data-i18n-aria="btn_ios"><img data-badge src="../badges/appstore-vi.svg" alt="App Store" width="132" height="44"></a>
       </div>
 
       <div class="card">
-        <div class="platform">📱</div>
+        <div class="platform pf" aria-hidden="true"><svg><use href="#pf-android"/></svg></div>
         <h2>Android</h2>
         <p class="sub">Google Play</p>
         <img class="qr" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASgAAAEoAQMAAADRyf5aAAAABlBMVEUPFyr///9JwCnAAAABf0lEQVR42u2ay4rEMAwExf7/P2shUethO2EY9raVkCHEPhWtdlse808uYxazvp1l9+X34/Ghj/iPfXL9h1kmsGJ1Ubqg1Qi8Ji/JqRGKbzECrwOvuG95XQKD17u+4olahNe7f3kWZXLEv068tD7uN+vjgVdGCwtFhXO11AGvxb9cSpPj14KJvnZeESFCXoIXHOG1+pcrf430KqXBa/EvLYSpp/oQr/Da6nEJXp5bSvx+zxO5d+wub+jruR4z2087C4HBa/ASodYIGqKD17I+au/YfnKFhNe+f7SK+GY97cc4vJb85a04K1FkUcJr609kxJfE0tTQ1+73Xt2IWaeGvk5+L0UlOPfeo4bX1s9R8dWhh9WiCa9Zj9XMaf0JZz/03P/yFvSLmuH3T/WYm+0MFFZVCq+535ZbVWO13qnHY/7KhNq2lLI2eK3+pfPHotYKE15HXu18trXy8ftnXj4qsSVZeB38q50I1SkbeeJ1ffSKY3VkBK9j/uKfg8z681m/bl42/PtBl4EAAAAASUVORK5CYII=" alt="QR Android" width="150" height="150" loading="lazy">
-        <a class="btn" href="https://play.google.com/store/apps/details?id=vn.examscan" target="_blank" rel="noopener" data-i18n="btn_android">Tải trên Google Play</a>
+        <a class="store-badge" href="https://play.google.com/store/apps/details?id=vn.examscan" target="_blank" rel="noopener" aria-label="Tải trên Google Play" data-i18n-aria="btn_android"><img data-badge src="../badges/googleplay-vi.png" alt="Google Play" width="148" height="44"></a>
       </div>
 
       <div class="card">
-        <div class="platform">💻</div>
+        <div class="platform pf" aria-hidden="true"><svg><use href="#pf-pc"/></svg></div>
         <h2>Windows</h2>
         <p class="sub" data-i18n="sub_windows">Máy tính / PC</p>
         <img class="qr" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUgAAAFIAQMAAAAI2vVwAAAABlBMVEUPFyr///9JwCnAAAAByklEQVR42u2bwW7DMAxDif3/P3NDE5NMsYPlSweMKVAksXt5kEVRdsHdC53ZmZ+Yievi604/ft3+3Gv0C7vXf54J8QvE4A0W8Gh5bvMEFkPxvd/4uzznPO+AjJXO8jznSURCvR4bn+f58yK3sCoDNH9OecIB+cun+j7kKV03XMl9DJfnJH+u+vNCqaxKjZXnfnxGvblEXnrEu4oqz4Eepe6skOVie2eC8tyPT9h60gufUvvq+4RnrHG9uZ/sk8pzoEdroS/HDhl3S3x5btefFiQ+PPsqoNj4HOpRpstH586ZtDz349Nfdu3pmxqfU30HaSGKd2qSlOfIvy8JyjAlxLbxOfLvsuzZ/rTnbP6c+nc6k2rBP2O1PAf67k6yV7/ZovXnQf60TYp2HdD686Reyv3MdyOK+qOpf2e6zeh/ZpOpPAf5kzaWeJxiUIepPEf6vsScMkVxcKT151jfAyrfoNYfzft1kngKJN8kqzz3/ZH2Ohid5Sjpmz+n9acLd/vM7DSV51Dfo06iozNya3kO9P3Roo+DS9al8jzhiThIG46p/aUjnlEyxa5x68/T88lxUjlIdv/o8HwdEIWTzodV3w/rz/5rozP/3MxvMMxVJLucHsQAAAAASUVORK5CYII=" alt="QR Windows" width="150" height="150" loading="lazy">
@@ -374,7 +398,7 @@
            voi Windows: tach ra de trang Releases moi ben chi hien file cua ben do,
            nguoi dung Mac khong phai loc .dmg giua mot dong .msi. -->
       <div class="card">
-        <div class="platform">🖥️</div>
+        <div class="platform pf" aria-hidden="true"><svg><use href="#pf-laptop"/></svg></div>
         <h2>macOS</h2>
         <p class="sub" data-i18n="sub_macos">Máy Mac</p>
         <img class="qr" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUgAAAFIAQMAAAAI2vVwAAAABlBMVEX///8AAABVwtN+AAAACXBIWXMAAA7EAAAOxAGVKw4bAAACxklEQVRoge2bPXasMAyFPYeCkiWwFJZmlsZSWIJLCk4U6V4ZJsk5700hOqmYMPhzisj68bVThHaWl35upUyHPpW6zdKKmqzViZLkR6R9L+Npn/ZSx3XOuuz20p7qZkOvJONJHW/jOXyBhGPgOEUHATmrC5N8jhQ8iRw6R9Yy7xNioiT5NKnjV14yF809LyX5FMm8hOjY5saKYOZPfzJYkkEkDT7SOjA1qwM2Z58YJ9WJJIPJbowOhoTagoqADPXbkvwX6dn95Ddf8zbH8rzGwT2cZCxpK13LKvJJFZTVL/hIk7/ARwtXf5LBpHlgL+htUGFp6hjvbaq9HHteSjKShI+GE+N731QtvZ/npooVNslQ0mPi5PL3rZRV2GLRYT7SMjFIktEkxw8GBTQDy0ZXP+8vk3yARPaHYsYnoWfMcegv8YuS/Jhk3zjw7+3GvFNcodE48FqcZCy5mDvgBeqO9+p3hQZdTpLBpI97hbVIoOqurf2I3G8VNslHyNoVSLOGXhIKpGu/BaRIktFk1wxe9NZkxVasx58Ozt5K6TpYkpGk/aQCaZ5prn7xJWrxxjhJ8gGSDbt7qyuQfrpqk6gCJxlLMhJG9JrsP7v228/45Oo/k/yQnKgJKNkK6ypSjGsCV1eZZCSJPsZKKE/uJt4TkEsHw6HS6Gd8SYaSFhPQBJjnxfv5+dZ+UQqSDCdr19qR0ql52R72Tfv9oZglGUVqhVUfDZ1813550rQn+QxZey1mHaCmYNMva9eeK8k4sltXx2h2BtK63+YuDSf5f9KHqP32/REXOrqcFRVWRJKMJuGh+5YXlBez/dqjzuznk4wm65sOtt/a7yzMQILhV5KPkbjlJX6/rorwRjXUGDlKks+R5gyNDpzs+Q12e6XRQS0yyXCSean4eNd+5dbB5vbzvwySjCFpfpsX/mBt0LyEE+7V+8skY8lvkXrhp3ajNVAAAAAASUVORK5CYII=" alt="QR macOS" width="150" height="150" loading="lazy">
@@ -401,14 +425,14 @@
         </p>
         <div class="grid mini">
           <div class="card">
-            <div class="platform">💻</div>
+            <div class="platform pf" aria-hidden="true"><svg><use href="#pf-pc"/></svg></div>
             <h2>Windows</h2>
             <p class="sub" data-i18n="sub_windows">Máy tính / PC</p>
             <img class="qr" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASgAAAEoAQMAAADRyf5aAAAABlBMVEUPFyr///9JwCnAAAABtklEQVR4nO1a23HDMAzT/kvLZ4l40PIGglsnTY0vHAmCUMbY15xzjrne1oV/9CuozcFLz1h0rd/hH9+nQRkT696ckJj3bd9EBPVhYjUfOrHa7+QrqF45xRSl6r++bkZJxDd8uop99Cso0fj785mPQclAsA6p9/YwqGKiaqhatFoR3cpnQdkAlH2oD9C5EjAOxqDQdJgDJfKaECq1oLyQUDx7AKr05GqDknyVdOmu9oNuBSUmtAnJtbFP9RpUt6DULJuN1ZnQr6C2cUdOQ9mHbtHZB0UmVERwpXL2eAlKTJhfoCn9ibyCYiYIZ6r9B12JB2Y2rkdBn6jyWCY5FF3FgoJROLQeI1I0BQUHQbdgMt9i6aAU0NNqaT0qAkVfUGSCRlSTkXzZAhCUjT6UFboSY1EFFxRbD2EqMkPvSwX4QSlflcUyp6/6kssPSi6fbdm61P4KChRZAGFZatevoOwLEtiBlKOWmJkHC6qpFA/V7BztOIMMSifX2hTtZJatGBSZsJNGRBKtpjxkDcoSB37Zom3XDPeDOphgRChXAbMalGw7oi0rMtOxHrZej5LL8u0Rjemb5AhqPBlm1EXOEwN8AAAAAElFTkSuQmCC" alt="QR ExamMixer Windows" width="150" height="150" loading="lazy">
             <a class="btn" href="https://github.com/viettien117/ExamMixer_Windows_updates/releases/latest" target="_blank" rel="noopener" data-i18n="btn_windows" data-i18n-aria="mixer_btn">Tải cho Windows</a>
           </div>
           <div class="card">
-            <div class="platform">🖥️</div>
+            <div class="platform pf" aria-hidden="true"><svg><use href="#pf-laptop"/></svg></div>
             <h2>macOS</h2>
             <p class="sub" data-i18n="sub_macos">Máy Mac</p>
             <img class="qr" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASgAAAEoAQMAAADRyf5aAAAABlBMVEUPFyr///9JwCnAAAABrElEQVR4nO2aUXLEMAxCc/9Lu1NbeiBvbhCybSbr5YtREMJ+nnMt/tbaX//v52ZXUJugtZ5i6dB1Vvbz+TUoY+KU02aovu3HzZvWgppMnM/mqcqr1oJ6Z+IIVL97rV9B/TBhaiVRR8WmfgVF53v/3P3x86hdOFU71FvVGFdQMHF1xn7jpGFoWlCHLhWTyKmHvgcFE23a3dKrsoZNC2o402aGiqrVbpdBSbTKrYo12PNaC8qqyTwq4l7UBWVMOFWl/DZ4sxwU7c8Go6JMHt9mpaCel6ESwkZfDAqHYOEEbKHveg2DgokxAJn8F23T8AeFszJt74KyigtKwc0Yf2aJEb0G1R60WyEJjqkYJiwokyv2gsxHKBwMypi4t4fMzjMDBWVMWCxN/qUcTFuOQV2Nb4T1owF48X0dhc+i3jQAeR4dFMm8/o0p6ZYlh0Epoafa2j78bA4FZe8cHKHzzI++P/R51BUZjocewy3QCQpB1wETHrVnFBRMMFuj77RS5YRBXUy4YXDC5P2DupgYIYSNRFaFQaFM3gvtOI6OaQbVqY06nx2c4xCKW7Dn66g/cjh0pU8WoJMAAAAASUVORK5CYII=" alt="QR ExamMixer macOS" width="150" height="150" loading="lazy">
@@ -431,28 +455,28 @@
         </p>
         <div class="grid mini">
           <div class="card">
-            <div class="platform">🍎</div>
+            <div class="platform pf" aria-hidden="true"><svg><use href="#pf-phone"/></svg></div>
             <h2>iPhone / iPad</h2>
             <p class="sub">App Store</p>
             <img class="qr" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOgAAADoAQMAAADfZzo7AAAABlBMVEUPFyr///9JwCnAAAAA/0lEQVR4nN2WQRLDMAgD/f9P06mRsOz8YNMm47DuARWE1+qratWqKr/cF4nW/9rPWfbGvQdI912XJP1Op9akd9FpVjqaSgI3df/3Ty+AqFzr+Txex6E77dfEIkijyrxX9Sl8HO1KH2E8obUAUqc9D6mSTU+iLu8Qw18kHTtr8wqVikntaBrMHlLSBUhF5hxyNgKpKv1Y+YQcZdGcVy7+qxdg1BWt0h5dbGU4+o6lrgJVPZEq5/DuKAUkdV+HiU8P0GiHbF3amCMLRn0YUajj0eQ4ai0uX8t+p1Fn72PIVHsTKpUU1uE0PZReFq4WQNJRQH79+QmLrpP4EWhOIzT6Az9PY1RldZukAAAAAElFTkSuQmCC" alt="QR ExamInsight iPhone / iPad" width="150" height="150" loading="lazy">
-            <a class="btn" href="https://apps.apple.com/app/id6816304403" target="_blank" rel="noopener" data-i18n="btn_ios" data-i18n-aria="insight_btn_ios">Tải trên App Store</a>
+            <a class="store-badge" href="https://apps.apple.com/app/id6816304403" target="_blank" rel="noopener" aria-label="Tải trên App Store" data-i18n-aria="insight_btn_ios"><img data-badge src="../badges/appstore-vi.svg" alt="App Store" width="132" height="44"></a>
           </div>
           <div class="card">
-            <div class="platform">📱</div>
+            <div class="platform pf" aria-hidden="true"><svg><use href="#pf-android"/></svg></div>
             <h2>Android</h2>
             <p class="sub">Google Play</p>
             <img class="qr" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASgAAAEoAQMAAADRyf5aAAAABlBMVEUPFyr///9JwCnAAAABuElEQVR4nO1aWxKDQAjz/pe2swt5sGNPsNHWaidfGSABfJ463ud513fdrmNf96MfQTk9i7BirNjCzSTxehR42T8ryvqfPkFhUJOJHUOVdJ2KyMigPpjYBCH9/vIVFCqToqt5+qxfQVH5vs9TH69HleQhjJiEjCYXxqAUQs0PVbBzsFUgKDLRxapu4SpaMu0TVDMB2iB+cqs0ZLJeQaEFQlaqKaoOCd4iKEbXJEmVq6qWfFlQrFqtgaN1bKa6EQ9qJFyFkvoiRBMVNCh6CdR9lXeIZGcm28qgOphGzbI+0TrGoLxE8YFuqylCjgZF/8X6NMZgZrs8Pa9Hqd/B+AZxpk4SrVFQQwFhsEwvbWwfFM0opxJerjjyCsqYsIk9B6qw86MHD4qTU59ASBingQhK463ZACEj5SOCEhMdWzP74L/QNgZlTKifNqaUlcfGLSh6Lpktb7D5FJStZ8cM3+LKNkNByTocVt60UukZFENGc0KuhnyfPaPscpTiZgztuQpx5QxKHaO9/OUbR7iOoA4muP2YqzPfDwV1xJdRpvXHeD8nKJNDX6rher6fcz3KrJd7eCdL2vHejvoBXdCzdNfR3oYAAAAASUVORK5CYII=" alt="QR ExamInsight Android" width="150" height="150" loading="lazy">
-            <a class="btn" href="https://play.google.com/store/apps/details?id=vn.examinsight" target="_blank" rel="noopener" data-i18n="btn_android" data-i18n-aria="insight_btn_android">Tải trên Google Play</a>
+            <a class="store-badge" href="https://play.google.com/store/apps/details?id=vn.examinsight" target="_blank" rel="noopener" aria-label="Tải trên Google Play" data-i18n-aria="insight_btn_android"><img data-badge src="../badges/googleplay-vi.png" alt="Google Play" width="148" height="44"></a>
           </div>
           <div class="card">
-            <div class="platform">💻</div>
+            <div class="platform pf" aria-hidden="true"><svg><use href="#pf-pc"/></svg></div>
             <h2>Windows</h2>
             <p class="sub" data-i18n="sub_windows">Máy tính / PC</p>
             <img class="qr" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASgAAAEoAQMAAADRyf5aAAAABlBMVEUPFyr///9JwCnAAAABtklEQVR4nO2aWZLDMBBCff9LKxVLPOgsJzCexYnCzAeFabql69rXWuu61vu2r3vlfRtXUeJlM3RTdm2y7husFQUT9w+CQlb3y/NpUT+YSMb0vqi/TGym5FNnoahvJtATZKW+pn8Vpcr35+ujPhaVAUKqo0DyYVGmiWQljs43+ipqMhF566SusyjKigomyKjb6MUZ1kXNLArtSEFHaep89vp5HIuSnKSncPutKtytKJggZClrHc5GZSxqMJHtolMpRSFcrCiaIqTFMEdOlk3R41HqGlUWyWG0S9ZVUfTaElW0ijZ+Vc+ijpj0yGHxqp0uCkVFF51RPvIWYisKJoIgS0tPJBZWlHOW0qk7HqZgHkkXpSJIcx0BFusnfxUFE0rvMbeR1TtCFJVT+jD07B+9XFQQ5DifAkN0SK2o2KVVfPc4OgRW1GDCu9me3PA65xNFxfArRDRPTowR2dNR3vhgIQY6/vui7O2Op5wNUMCfe5BFxc61N9ZsVwwUi4KJOJ+jswBDU/wuKpnIdsiHmeaZk6IGE7ldFAecPlh9OurMCMHjV/t/fJ0vfDhKLkXPzUGwX162Ho56AaB6FQV847k0AAAAAElFTkSuQmCC" alt="QR ExamInsight Windows" width="150" height="150" loading="lazy">
             <a class="btn" href="https://github.com/viettien117/ExamInsight_Windows_updates/releases/latest" target="_blank" rel="noopener" data-i18n="btn_windows" data-i18n-aria="insight_btn">Tải cho Windows</a>
           </div>
           <div class="card">
-            <div class="platform">🖥️</div>
+            <div class="platform pf" aria-hidden="true"><svg><use href="#pf-laptop"/></svg></div>
             <h2>macOS</h2>
             <p class="sub" data-i18n="sub_macos">Máy Mac</p>
             <img class="qr" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASgAAAEoAQMAAADRyf5aAAAABlBMVEUPFyr///9JwCnAAAABs0lEQVR4nO2aUXKEYAiDvf+l7SjwJfxtT2DcWXU1TxkIAfa66rjv67r77jneSz/REVTzczU777muz03R9rAWFEy83+apmXnPw6F9gxITFVxFVefhH3wFJSYgpnJxcvPg6/OoUfY+dyrOk61fQU3l++dz1Megyj60dFW2off+MqhONaoinkE6P++CgolxD3DV3Ii4DrSgVP6UgAg6lsLyNKiWcElURRLeS0kbFPKlq1ohu6MKBIWaq2VEvdQyLsTXUaSbgoraiHIFBROjUuShl8LuF4MyJvo6rRAWwvkMypkor3W0imoZsa1BjTa5jTCDOhMejFhQVARrhjSokGENall36yDVHJmnD4ruRpN6k/5fY+mgGNCbWZuB8wSVzVODWrNnn9dPdh5D/KA0dGayY7+ZqQa1mJAzlcbjtlgaBeU9kDYddJgWX4ypg5p2eg2fl977XVDqIn0BZOFlhTEo3/yYIVMwjXQFZcPTiSLsxbL4K7CCss01i0dPTPnXoPb/c8hAV681ZA1qM8FKSEta4iuogwnzpub1fYYRlDhRVFmbaG1jUFuntJMVZ6NoS8vub6N+AFHXlIV0Pr2QAAAAAElFTkSuQmCC" alt="QR ExamInsight macOS" width="150" height="150" loading="lazy">
@@ -475,28 +499,28 @@
         </p>
         <div class="grid mini">
           <div class="card">
-            <div class="platform">🍎</div>
+            <div class="platform pf" aria-hidden="true"><svg><use href="#pf-phone"/></svg></div>
             <h2>iPhone / iPad</h2>
             <p class="sub">App Store</p>
             <img class="qr" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOgAAADoAQMAAADfZzo7AAAABlBMVEUPFyr///9JwCnAAAABAUlEQVR4nOWWQRLDIAwD+f+n3SGSbGj7gg3pJJQ1B4xkWEut9lNV+qPPNBLdY5vl90R5FEmVC4coE+6SqVPxxNQLqBXwAqoUtAD29v94AUSPanY8f2odgz7LflYeyc9YAWmG8onknRIgPQaTg/idSVO/vf2XFIh03VHTFpBmxRNh1+sihqNzXrmrBM1ZRaPZ5k5BoWl9Gdw13PUbSKPz7P1Ucyb1qi2C7L9n8ahcnVo2EREGjaqS3U5vhxOpMuGMpOdYIr3vJVPJOz0s2omI29XNi0dzF4noU7Q1E0hdxOdMttPbCEiaIzqBLQEqtQCuPpLmcDpHZwqOrtb2uNpOB9IPLZfbzVOB5+YAAAAASUVORK5CYII=" alt="QR ExamSheet iPhone / iPad" width="150" height="150" loading="lazy">
-            <a class="btn" href="https://apps.apple.com/app/id6816303954" target="_blank" rel="noopener" data-i18n="btn_ios" data-i18n-aria="sheet_btn_ios">Tải trên App Store</a>
+            <a class="store-badge" href="https://apps.apple.com/app/id6816303954" target="_blank" rel="noopener" aria-label="Tải trên App Store" data-i18n-aria="sheet_btn_ios"><img data-badge src="../badges/appstore-vi.svg" alt="App Store" width="132" height="44"></a>
           </div>
           <div class="card">
-            <div class="platform">📱</div>
+            <div class="platform pf" aria-hidden="true"><svg><use href="#pf-android"/></svg></div>
             <h2>Android</h2>
             <p class="sub">Google Play</p>
             <img class="qr" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASgAAAEoAQMAAADRyf5aAAAABlBMVEUPFyr///9JwCnAAAABrElEQVR4nO2aWXLDMAxDc/9LqxMTG1XfIEibju2+LwwFgZQ/n/mcc+b7OWce6E98Sj0ajFb+PHdf4fC8VCrxfFFXrKrnd+qNRKmlRMg119Cn1LsS4VlciHNR6lJizOp7Qd2wJl/8q5T0ef+59sdS965IWVhb9/b585TX4VyqpvBYflYKGcJZC6F0fGq0mgelqAR8PNQZgVxwpbYSXIWsM6jl6IpdsRTlkEpRYQgSiLGl1P/YoRjy7V/2tVLe9FBnTv18gOxQaimhZRihH57vVF9qKcHAlblUzi/LLxUBgsmCY0POB8PpSl0zr4isqyUqlYlBK2+12LedlYpOkXrQ9zXJQYgtFW2jwqqbI+2YZkotbUKksDQs2VJWwgcZK19Ef1kqlOAEJ8YVu9zi8LEU9z75l5ohn9pawFIx/4phRNxoglEqZzlRQp7X59CwFJSQM+X5WvwvA2wpTQYpTmQyr1I34qXWmzc5Sl3zsFLOpu57orZk89KsVL4dEe1PtpFxsl1qKeEW6OWsttR/JdRUO1vI7UuFEuvNG90q7rOnLKX+UWdCK3fFAL/UgRJ/AhEz9HIEdlAAAAAASUVORK5CYII=" alt="QR ExamSheet Android" width="150" height="150" loading="lazy">
-            <a class="btn" href="https://play.google.com/store/apps/details?id=vn.ExamSheet" target="_blank" rel="noopener" data-i18n="btn_android" data-i18n-aria="sheet_btn_android">Tải trên Google Play</a>
+            <a class="store-badge" href="https://play.google.com/store/apps/details?id=vn.ExamSheet" target="_blank" rel="noopener" aria-label="Tải trên Google Play" data-i18n-aria="sheet_btn_android"><img data-badge src="../badges/googleplay-vi.png" alt="Google Play" width="148" height="44"></a>
           </div>
           <div class="card">
-            <div class="platform">💻</div>
+            <div class="platform pf" aria-hidden="true"><svg><use href="#pf-pc"/></svg></div>
             <h2>Windows</h2>
             <p class="sub" data-i18n="sub_windows">Máy tính / PC</p>
             <img class="qr" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASgAAAEoAQMAAADRyf5aAAAABlBMVEUPFyr///9JwCnAAAABtUlEQVR4nO2aWQ4DIQxDe/9LT0WJnw2aG9Rd0Czvy0qCCXw++/Os77PG/XvWuIbjU+qnytLp94+7GJZqpVBCcbNE2UGkQNpP418KJX7BtW8l4+Rn6lUKJaZekZfvepWaykS6Ta2iph31q1TOfC/fl/nxv6kJpl2YCCVV+gi1UlZJtV6i4SxmliyFEjvQJM6IJV8x9apUKBEZimQy+yNmqVDCF5SoI6SwFaVkuCxXyGb/4NJWamZQ6jtJymPHYins+pQxT4bOPpZGpbzScXF3z2aMBsvJUkgUa+1xFzZjMwWUsuXSKGeBxYj5s5SjBn8qD5uKEWylrpCSIFoH8S7V+3uKtJQ5fV6ahqWcdTZasfahOW0BS2Vlir5ENn3uaPt7KnpekYzIJfdaCh+vvjN2lWmRTbVSKKGwoqxn/ytWkaW0BHK+HYbB8VUqlKCrijuN+qWqVQolotdMwyb8hO1FqXCi57711ZFwc6zUset27hPFcqiUlTg2GHH5vDt8fqk4GcEseXUG8xRPqUuJiDsbVxv9UnHciy4OIUbrvpSV4CzOdSoujzWVug6o6oIGhF6yWVtqKfEFYE2TlI//s24AAAAASUVORK5CYII=" alt="QR ExamSheet Windows" width="150" height="150" loading="lazy">
             <a class="btn" href="https://github.com/viettien117/ExamSheet_Windows_updates/releases/latest" target="_blank" rel="noopener" data-i18n="btn_windows" data-i18n-aria="sheet_btn">Tải cho Windows</a>
           </div>
           <div class="card">
-            <div class="platform">🖥️</div>
+            <div class="platform pf" aria-hidden="true"><svg><use href="#pf-laptop"/></svg></div>
             <h2>macOS</h2>
             <p class="sub" data-i18n="sub_macos">Máy Mac</p>
             <img class="qr" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASgAAAEoAQMAAADRyf5aAAAABlBMVEUPFyr///9JwCnAAAABtElEQVR4nO1aW46DQAzj/pdmVeJXhu0JalrRAv6yMo7j4brmuPW97+fyc55THEU9BN33NSzN/+f3Q9lzHwQWRSamnIYycKNaw9OiXkygmoY7MlbUdyZQW1h71K+iXkxIrZ774hO0bf0qSp3v/8/ZH38eNT0RZQUdY43pKEpMjM5L82XApGGyGkXZmqKsbCgsVLSpRUWDpDq5iIatEPyiaNnT3id18wB1VRSYgMpf75EoJsmicqZG8bBJSutJXVGLCVQadJ6WdYt+UWEVbCZwER1RZViUYwhVFEfuMBgZjBUVei4rLy/BzMLjeVGUMvfA8A5HhFiUswiTIVPvFLEoh4O0p7RhO3BlwRVli+CEAgaf/oI6X1QwETW2fMSmryimqcy3HH957yyGx6Iyj5Dh1y6aiovfoiBSDiJIkm1YZGJFgYEg4ojtM48uKjQpth81eTu0oNsvSsouFxHe9dgcKmqtuYwGbS+UixXlxWbvHtmzdxqLWkw4xs/JJ81YUYuJmK1X7prFV9TJhNrgQZjG7qIOJuIq2HSkU9RSJm4J5VSZr84VpdTGC1NtcSVix/ur1w+j/gAJpgQkfus54wAAAABJRU5ErkJggg==" alt="QR ExamSheet macOS" width="150" height="150" loading="lazy">
@@ -595,6 +619,7 @@
     <footer>
       © 2026 RuBi · ExamScan · ExamMixer · ExamInsight · ExamSheet<br>
       <a href="https://viettien117.github.io/examscan-privacy/" target="_blank" rel="noopener" data-i18n="privacy">Chính sách quyền riêng tư</a>
+      <p class="tm" data-i18n="tm">App Store là nhãn hiệu dịch vụ của Apple Inc. Google Play và biểu trưng Google Play là nhãn hiệu của Google LLC. Hình robot Android được tái tạo hoặc sửa đổi từ tác phẩm do Google tạo và chia sẻ, dùng theo các điều khoản của Giấy phép Creative Commons 3.0 Ghi công.</p>
     </footer>
   </div>
 
@@ -651,7 +676,8 @@
       tpl_zip: "Trọn bộ (ZIP · 116 MB)",
       tpl_key: "Mẫu file đáp án (Excel)",
       tpl_note: "3 phiếu PDF ghi nhãn tiếng Anh. Bộ ZIP có phiếu 10–60 câu bằng cả 5 ngôn ngữ (PNG, PDF, Word), kèm ảnh phiếu đã tô và đáp án để chấm thử.",
-      privacy: "Chính sách quyền riêng tư"
+      privacy: "Chính sách quyền riêng tư",
+      tm: "App Store là nhãn hiệu dịch vụ của Apple Inc. Google Play và biểu trưng Google Play là nhãn hiệu của Google LLC. Hình robot Android được tái tạo hoặc sửa đổi từ tác phẩm do Google tạo và chia sẻ, dùng theo các điều khoản của Giấy phép Creative Commons 3.0 Ghi công."
     },
     en: {
       title: "Download ExamScan — Grade multiple-choice tests with a photo",
@@ -702,7 +728,8 @@
       tpl_zip: "Full set (ZIP · 116 MB)",
       tpl_key: "Answer key template (Excel)",
       tpl_note: "The 3 PDF sheets are labeled in English. The ZIP holds 10–60-question sheets in all 5 languages (PNG, PDF, Word), plus photos of filled-in sheets and answer keys for a test run.",
-      privacy: "Privacy policy"
+      privacy: "Privacy policy",
+      tm: "App Store is a service mark of Apple Inc. Google Play and the Google Play logo are trademarks of Google LLC. The Android robot is reproduced or modified from work created and shared by Google and used according to terms described in the Creative Commons 3.0 Attribution License."
     },
     pt: {
       title: "Baixar ExamScan — Corrija provas de múltipla escolha com uma foto",
@@ -753,7 +780,8 @@
       tpl_zip: "Pacote completo (ZIP · 116 MB)",
       tpl_key: "Modelo de gabarito (Excel)",
       tpl_note: "As 3 folhas em PDF estão em inglês. O ZIP traz folhas de 10 a 60 questões nos 5 idiomas (PNG, PDF, Word), além de fotos de folhas preenchidas e gabaritos para um teste.",
-      privacy: "Política de privacidade"
+      privacy: "Política de privacidade",
+      tm: "App Store é uma marca de serviço da Apple Inc. Google Play e o logotipo do Google Play são marcas comerciais da Google LLC. O robô do Android é reproduzido ou modificado a partir de trabalho criado e compartilhado pelo Google e usado de acordo com os termos da Licença de Atribuição Creative Commons 3.0."
     },
     es: {
       title: "Descargar ExamScan — Califica exámenes de opción múltiple con una foto",
@@ -804,7 +832,8 @@
       tpl_zip: "Paquete completo (ZIP · 116 MB)",
       tpl_key: "Plantilla de respuestas (Excel)",
       tpl_note: "Las 3 hojas en PDF están en inglés. El ZIP incluye hojas de 10 a 60 preguntas en los 5 idiomas (PNG, PDF, Word), además de fotos de hojas rellenadas y claves de respuestas para una prueba.",
-      privacy: "Política de privacidad"
+      privacy: "Política de privacidad",
+      tm: "App Store es una marca de servicio de Apple Inc. Google Play y el logotipo de Google Play son marcas comerciales de Google LLC. El robot de Android se reproduce o modifica a partir de un trabajo creado y compartido por Google, y se usa de acuerdo con los términos de la Licencia de Atribución Creative Commons 3.0."
     },
     id: {
       title: "Unduh ExamScan — Nilai soal pilihan ganda hanya dengan memotret",
@@ -855,7 +884,8 @@
       tpl_zip: "Paket lengkap (ZIP · 116 MB)",
       tpl_key: "Templat kunci jawaban (Excel)",
       tpl_note: "3 lembar PDF berlabel bahasa Inggris. File ZIP berisi lembar 10–60 soal dalam 5 bahasa (PNG, PDF, Word), ditambah foto lembar terisi dan kunci jawaban untuk uji coba.",
-      privacy: "Kebijakan privasi"
+      privacy: "Kebijakan privasi",
+      tm: "App Store adalah merek layanan Apple Inc. Google Play dan logo Google Play adalah merek dagang Google LLC. Robot Android direproduksi atau dimodifikasi dari karya yang dibuat dan dibagikan oleh Google serta digunakan sesuai ketentuan Lisensi Atribusi Creative Commons 3.0."
     }
   };
 
@@ -886,7 +916,11 @@
       var v = t[el.getAttribute("data-i18n-aria")];
       if (v != null) el.setAttribute("aria-label", v);
     });
-    select.value = lang;
+    // Huy hieu App Store / Google Play: moi ngon ngu mot file rieng trong badges/
+    // (huy hieu chinh thuc cua Apple/Google, KHONG duoc tu dich hay tu ve lai).
+    document.querySelectorAll("img[data-badge]").forEach(function (el) {
+      el.src = el.getAttribute("src").replace(/-(vi|en|id|pt|es)\.(svg|png)$/, "-" + lang + ".$2");
+    });    select.value = lang;
   }
 
   // Lần đầu vào trang thì đoán theo ngôn ngữ trình duyệt; sau đó nhớ lựa chọn.
